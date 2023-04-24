@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 
 document.addEventListener('turbo:load', () => {
-  const root = ReactDOM.createRoot(document.body.appendChild(document.createElement('div')))
+  const mainDiv = document.createElement("container")
+  const root = ReactDOM.createRoot(document.body.appendChild(mainDiv))
   root.render(
     <React.StrictMode>
       <Suspense fallback={<div>Loading...</div>}>

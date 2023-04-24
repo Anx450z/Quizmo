@@ -1,8 +1,11 @@
 import React from 'react'
+import Quiz from './Quiz'
 
 const Home = () => {
   return (
-    <div>React Home</div>
+    <>
+    <Quiz/>
+    </>
   )
 }
 
