@@ -4,6 +4,7 @@ class QuizController < ApplicationController
 
   def index
     @quizzes = Quiz.all
+    render json: @quizzes
   end
 
   def new
