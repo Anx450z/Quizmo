@@ -6,10 +6,8 @@ document.addEventListener('turbo:load', () => {
   const mainDiv = document.createElement("container")
   const root = ReactDOM.createRoot(document.body.appendChild(mainDiv))
   root.render(
-    <React.StrictMode>
       <Suspense fallback={<div>Loading...</div>}>
         <App />
       </Suspense>
-    </React.StrictMode>
   )
 })

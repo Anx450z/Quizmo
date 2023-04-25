@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import quizApi from '../apis/quiz'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import useSwr from 'swr'
 
 const Quiz = () => {
@@ -12,15 +12,12 @@ const Quiz = () => {
 
   const getQuiz = async () => {
     const response = await quizApi.list()
-    return response.data
+    return response.data.quizzes
   }
 
   const { data: quizList } = useSwr<Quiz[]>('/quiz', getQuiz)
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
       <div className="bg-red-800">Hello</div>
 
       <div className="absolute bottom-0 w-full bg-red-800">Hello</div>

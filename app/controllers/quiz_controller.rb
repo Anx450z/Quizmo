@@ -4,7 +4,7 @@ class QuizController < ApplicationController
 
   def index
     @quizzes = Quiz.all
-    render json: @quizzes
+    render json: {message: "Your quizzes retrieved successfully!" , quizzes: @quizzes}
   end
 
   def new
@@ -14,7 +14,7 @@ class QuizController < ApplicationController
   def create
     @quiz = Quiz.new(quiz_params)
     if @quiz.save
-      render json: {status: "success"}
+      render json: {message: "success"}
     else
       render json: {status: :unprocessable_entity}
     end
@@ -29,8 +29,7 @@ class QuizController < ApplicationController
   end
 
   def destroy
-    render json: {status: "success"}if @quiz.destroy
-    
+    render json: {message: "success"} if @quiz.destroy
   end
 
   private
