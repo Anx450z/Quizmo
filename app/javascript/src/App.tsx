@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import { Toaster } from 'react-hot-toast'
 import { axiosInterceptor } from './apis/axios'
+import CreateQuiz from './pages/CreateQuiz'
 
 const App = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/new_quiz" element={<CreateQuiz />} />
         </Routes>
       </BrowserRouter>
     </>

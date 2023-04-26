@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import quizApi from '../apis/quiz'
 import toast from 'react-hot-toast'
 import useSwr from 'swr'
+import { useNavigate } from 'react-router-dom'
 
-const Quiz = () => {
+const Quizzes = () => {
   type Quiz = {
     id: number
     title: string
     description: string
   }
+  const navigate = useNavigate()
 
   const getQuiz = async () => {
     const response = await quizApi.list()
@@ -29,6 +31,7 @@ const Quiz = () => {
               {title}
               <label className="text-sm text-indigo-700">description</label>
               {description}
+              <button onClick={() => navigate('edit/quiz/${id}')}></button>
             </li>
           ))}
         </ul>
@@ -37,4 +40,4 @@ const Quiz = () => {
   )
 }
 
-export default Quiz
+export default Quizzes

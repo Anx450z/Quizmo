@@ -1,11 +1,15 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const list = () =>
-  axios.get('/quiz', {
-    timeout: 5000,
-  })
+export type Quiz = {
+  title: string
+  description: string
+}
 
-const quizApi = { list }
+const list = () => axios.get('/quiz', {})
+
+const create = (quiz: Quiz) => axios.post('/quiz', quiz)
+
+const quizApi = { list, create }
 
 export default quizApi

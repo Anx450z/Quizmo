@@ -5,7 +5,9 @@ const DEFAULT_ERROR_NOTIFICATION = "Something went wrong"
 
 const handleSuccessResponse = (response: AxiosResponse) => {
   if (response.data.message){
-    toast.success(response.data.message)
+    toast.success(response.data.message, {
+      position: 'bottom-center'
+    })
   } else if (response.data.error){
     toast.error(response.data.error)
   }
