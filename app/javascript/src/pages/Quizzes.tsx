@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import quizApi from '../apis/quiz'
 import toast from 'react-hot-toast'
-import useSwr from 'swr'
+import useSwr, { mutate } from 'swr'
 import { useNavigate } from 'react-router-dom'
 
 const Quizzes = () => {
   type Quiz = {
-    id: number
+    id: string
     title: string
     description: string
   }
@@ -14,11 +14,20 @@ const Quizzes = () => {
 
   const getQuiz = async () => {
     const response = await quizApi.list()
-    console.log('this')
     return response.data.quizzes
   }
 
-  const { data: quizList } = useSwr<Quiz[]>('/quiz', getQuiz)
+  const deleteQuiz = async (id: string) => {
+    await quizApi.destroy(`${id}`)
+    mutate()
+  }
+
+
+  // This line of code imports and uses the `useSwr` hook from the `swr` library.
+  // It fetches a list of quizzes from the specified endpoint, `/quiz`, with the data being returned as an array of `Quiz` objects.
+  // The function getQuiz is called to fetch the data, which is then cached by the hook.
+  const { data: quizList, mutate } = useSwr<Quiz[]>('/quiz', getQuiz);
+  
   return (
     <>
       <div className="bg-red-800">Hello</div>
@@ -32,7 +41,8 @@ const Quizzes = () => {
               {title}
               <label className="text-sm text-indigo-700">description</label>
               {description}
-              <button onClick={() => navigate('edit/quiz/${id}')}></button>
+              <button className='text-red-800 border' onClick={() => deleteQuiz(id)}>delete</button>
+              <button className='text-blue-800 border' onClick={() => navigate(`/show_quiz/${id}`)}>view</button>
             </li>
           ))}
         </ul>
