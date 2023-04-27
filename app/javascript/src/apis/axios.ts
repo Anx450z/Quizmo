@@ -3,6 +3,13 @@ import { toast } from 'react-hot-toast'
 
 const DEFAULT_ERROR_NOTIFICATION = "Something went wrong"
 
+export const setAuthHeaders = () => {
+  axios.defaults.headers.common = {
+    "Content-Type": "application/json",
+    "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.getAttribute("content") as string,
+  }
+}
+
 const handleSuccessResponse = (response: AxiosResponse) => {
   if (response.data.message){
     toast.success(response.data.message, {
