@@ -20,7 +20,8 @@ class QuizController < ApplicationController
   end
 
   def show
-    render json: { quiz: @quiz }
+    # @quiz = Quiz.includes(questions: [:options]).find(params[:id])
+    render json: { quiz: @quiz, questions: @quiz.questions }
   end
 
   def update
