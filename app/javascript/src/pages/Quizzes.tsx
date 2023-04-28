@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import quizApi from '../apis/quiz'
-import toast from 'react-hot-toast'
 import useSwr, { mutate } from 'swr'
 import { useNavigate } from 'react-router-dom'
 

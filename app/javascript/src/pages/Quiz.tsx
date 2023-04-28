@@ -1,37 +1,54 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import QuizForm from './QuizForm'
-import quizApi, {Quiz} from '../apis/quiz'
+import quizApi, { QuizType } from '../apis/quiz'
 import { useNavigate, useParams } from 'react-router-dom'
 import useSwr from 'swr'
+import { QuestionType } from '../apis/questions'
 
 const Quiz = () => {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  const getQuiz = async () => {
-    const response = await quizApi.show(id!)
-    return response.data.quiz
+  interface Quiz extends QuizType {
+    questions: QuestionType[]
   }
 
-  const handleUpdateQuiz = async (e:any) => {
+  const getQuiz = async () => {
+    const response = await quizApi.show(id!)
+    return response.data
+  }
+
+  const handleUpdateQuiz = async (e: any) => {
     const data = new FormData(e.currentTarget)
 
     const quiz = {
-      title: data.get('title')as string,
-      description: data.get('description') as string
+      title: data.get('title') as string,
+      description: data.get('description') as string,
     }
-    await quizApi.update(id!,quiz)
+    await quizApi.update(id!, quiz)
     mutate()
   }
 
-  const { data: quiz, isLoading, mutate} = useSwr<Quiz>(`quiz/${id}`, getQuiz)
-  
+  const { data: quiz, isLoading, mutate } = useSwr<Quiz>(`quiz/${id}`, getQuiz)
+
   return (
-    <div className='flex'>
-    {isLoading ? <>Loading...</> :<>
-      <QuizForm data={quiz} button={"Update"} handleSubmit={handleUpdateQuiz}/>
-      <button onClick={()=>navigate('/')}>All Quizzes</button>
-    </> }
+    <div className="flex">
+      {isLoading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
+          <button onClick={() => navigate('/')}>All Quizzes</button>
+          <ul className='flex-col'>
+            {quiz?.questions.map(({ id, question }: QuestionType) => (
+              <li key={id} id={id}>
+                <label>question : </label>
+                <label>{question}</label>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }
