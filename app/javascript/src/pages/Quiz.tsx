@@ -13,20 +13,26 @@ const Quiz = () => {
     return response.data.quiz
   }
 
-  const { data: quiz, isLoading} = useSwr<Quiz>(`quiz/${id}`, getQuiz)
+  const handleUpdateQuiz = async (e:any) => {
+    const data = new FormData(e.currentTarget)
 
-  // const setQuiz = () => {
-  // ;(document.getElementById('title')as HTMLInputElement).value = quiz?.title||'';
-  // (document.getElementById('description') as HTMLInputElement).value = quiz?.description||''
-  // }
+    const quiz = {
+      title: data.get('title')as string,
+      description: data.get('description') as string
+    }
+    await quizApi.update(id!,quiz)
+    mutate()
+  }
+
+  const { data: quiz, isLoading, mutate} = useSwr<Quiz>(`quiz/${id}`, getQuiz)
   
   return (
-    <>
+    <div className='flex'>
     {isLoading ? <>Loading...</> :<>
-      <QuizForm data={quiz}/>
+      <QuizForm data={quiz} button={"Update"} handleSubmit={handleUpdateQuiz}/>
       <button onClick={()=>navigate('/')}>All Quizzes</button>
     </> }
-    </>
+    </div>
   )
 }
 
