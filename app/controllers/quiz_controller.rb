@@ -6,10 +6,6 @@ class QuizController < ApplicationController
     render json: { message: 'Your quizzes retrieved successfully!', quizzes: @quizzes }
   end
 
-  def new
-    @quiz = Quiz.new
-  end
-
   def create
     @quiz = Quiz.new(quiz_params)
     if @quiz.save

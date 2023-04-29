@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import QuizForm from './QuizForm'
 import { useNavigate } from 'react-router-dom'
-import quizApi, { Quiz } from '../apis/quiz'
+import quizApi from '../apis/quiz'
 
 const CreateQuiz = () => {
   const handleCreateQuiz = async (e:any) => {
@@ -13,7 +13,6 @@ const CreateQuiz = () => {
       description: data.get('description') as string
     }
 
-    console.log(quiz)
     await quizApi.create(quiz)
   }
 

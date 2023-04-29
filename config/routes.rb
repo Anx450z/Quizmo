@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :quiz do
-    resources :questions
+    resources :question
   end
   
   root to: 'home#index'
