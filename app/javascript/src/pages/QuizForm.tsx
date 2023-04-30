@@ -8,13 +8,17 @@ const QuizForm = (props: any) => {
       props.data?.quiz.description || ''
   }, [])
   return (
-    <form onSubmit={props.handleSubmit} className="flex-col">
-      <label>Title : </label>
-      <input required placeholder="Title" id="title" name="title"></input>
-      <label>description : </label>
-      <textarea placeholder="Description" id="description" name="description"></textarea>
-      <button type="submit">{props.button}</button>
-    </form>
+    <div className="flex-col border rounded m-1 p-1">
+      <form onSubmit={props.handleSubmit}>
+        {/* <label>Title : </label> */}
+        <input required placeholder="Title" id="title" name="title"></input>
+        <br></br>
+        {/* <label>description : </label> */}
+        <textarea placeholder="Description" id="description" name="description"></textarea>
+        <br></br>
+        <button type="submit" className=''>{props.button}</button>
+      </form>
+    </div>
   )
 }
 

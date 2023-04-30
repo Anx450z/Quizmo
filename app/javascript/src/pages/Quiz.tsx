@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import useSwr from 'swr'
 import questionApi, { QuestionType } from '../apis/questions'
 import CreateQuestion from '../components/question/CreateQuestion'
+import QuestionCard from '../components/question/QuestionCard'
 
 const Quiz = () => {
   const navigate = useNavigate()
@@ -38,7 +39,7 @@ const Quiz = () => {
   const { data: quiz, isLoading, mutate } = useSwr<Quiz>(`quiz/${id}`, getQuiz)
 
   return (
-    <div className="flex">
+    <div className="w-screen flex-col" id="quiz-container">
       {isLoading ? (
         <>Loading...</>
       ) : (
@@ -46,16 +47,16 @@ const Quiz = () => {
           <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
           <button onClick={() => navigate('/')}>All Quizzes</button>
           <CreateQuestion />
-          <ul className="flex-col">
-            {quiz?.questions.map(({ id, question }: QuestionType) => (
-              <li key={id} id={id}>
-                <label>question : </label>
-                <label>{question}</label>
-                <button className="delete" onClick={() => handleDeleteQuestion(id)}>
-                  delete
-                </button>
-                <button>Edit</button>
-              </li>
+          <p className="m-2 p-2 text-xl font-bold">Questions</p>
+          <ul className="container flex-col">
+            {quiz?.questions.map(({ id, question }: QuestionType, index: number) => (
+              <QuestionCard
+                id={id}
+                key={id}
+                index={index}
+                handleDeleteQuestion={handleDeleteQuestion}
+                question={question}
+              />
             ))}
           </ul>
         </>

@@ -2,8 +2,6 @@ class QuestionController < ApplicationController
   before_action :set_quiz, only: %i[create update destroy]
   before_action :set_question, only: %i[update destroy]
 
-  def new; end
-
   def create
     question = @quiz.questions.new(question_params)
     if question.save

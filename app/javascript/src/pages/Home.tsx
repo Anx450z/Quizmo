@@ -7,8 +7,7 @@ const Home = () => {
   return (
     <>
       <button onClick={() => navigate('/new_quiz')}>Create new quiz</button>
-    
-    <Quizzes/>
+      <Quizzes />
     </>
   )
 }
