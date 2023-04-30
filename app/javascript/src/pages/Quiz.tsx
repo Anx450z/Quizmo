@@ -49,13 +49,13 @@ const Quiz = () => {
           <CreateQuestion />
           <p className="m-2 p-2 text-xl font-bold">Questions</p>
           <ul className="container flex-col">
-            {quiz?.questions.map(({ id, question }: QuestionType, index: number) => (
+            {quiz?.questions.map(({ question }: QuestionType, index: number) => (
               <QuestionCard
-                id={id}
-                key={id}
+                id={question.id}
+                key={question.id}
                 index={index}
                 handleDeleteQuestion={handleDeleteQuestion}
-                question={question}
+                question={question.question}
               />
             ))}
           </ul>

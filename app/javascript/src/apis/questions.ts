@@ -2,7 +2,10 @@ import axios from 'axios'
 
 export type QuestionType = {
   id: string
-  question: string
+  question: {
+    id: string,
+    question: string
+  }
 }
 
 type Question = {
