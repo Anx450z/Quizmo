@@ -6,6 +6,7 @@ import useSwr from 'swr'
 import questionApi, { QuestionType } from '../apis/questions'
 import CreateQuestion from '../components/question/CreateQuestion'
 import QuestionCard from '../components/question/QuestionCard'
+import { OptionType } from '../apis/option'
 
 const Quiz = () => {
   const navigate = useNavigate()
@@ -49,13 +50,14 @@ const Quiz = () => {
           <CreateQuestion />
           <p className="m-2 p-2 text-xl font-bold">Questions</p>
           <ul className="container flex-col">
-            {quiz?.questions.map(({ question }: QuestionType, index: number) => (
+            {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
               <QuestionCard
                 id={question.id}
                 key={question.id}
                 index={index}
                 handleDeleteQuestion={handleDeleteQuestion}
                 question={question.question}
+                options = {options}
               />
             ))}
           </ul>

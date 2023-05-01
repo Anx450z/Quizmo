@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { OptionType } from './option'
 
 export type QuestionType = {
   id: string
@@ -6,6 +7,7 @@ export type QuestionType = {
     id: string,
     question: string
   }
+  options: OptionType[]
 }
 
 type Question = {
