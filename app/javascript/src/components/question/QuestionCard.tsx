@@ -21,7 +21,7 @@ const QuestionCard = (props: any) => {
           <button>Edit</button>
         </div>
       </div>
-      <OptionControl />
+      <OptionControl question_id={props.id}/>
       <Option options={props.options}/>
     </li>
   )

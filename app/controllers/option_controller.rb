@@ -1,9 +1,9 @@
 class OptionController < ApplicationController
-  before_action :set_option
-  before_action :set_question
+  before_action :set_option, only: %i[update destroy]
+  before_action :set_question, only: [:create]
 
   def create
-    Question.options.create(option_params)
+    @question.options.create(option_params)
   end
 
   def update
@@ -21,7 +21,7 @@ class OptionController < ApplicationController
   end
 
   def set_option
-    @option = Option.find(params[:option_id])
+    @option = Option.find(params[:id])
   end
 
   def option_params

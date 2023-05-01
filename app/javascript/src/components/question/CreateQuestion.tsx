@@ -3,7 +3,7 @@ import QuestionForm from './QuestionForm'
 import { useParams } from 'react-router-dom'
 import questionApi from '../../apis/questions'
 
-const CreateQuestion = () => {
+const CreateQuestion = (props:any) => {
 
   const {id} = useParams()
 
