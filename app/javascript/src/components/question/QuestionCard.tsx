@@ -21,8 +21,8 @@ const QuestionCard = (props: any) => {
           <button>Edit</button>
         </div>
       </div>
-      <OptionControl question_id={props.id}/>
-      <Option options={props.options}/>
+      <OptionControl question_id={props.id} onOptionCreate={props.onOptionCreate}/>
+      <Option options={props.options} onOptionDelete={props.onOptionDelete}/>
     </li>
   )
 }

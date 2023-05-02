@@ -3,7 +3,7 @@ class QuizController < ApplicationController
 
   def index
     @quizzes = Quiz.all
-    render json: { message: 'Your quizzes retrieved successfully!', quizzes: @quizzes }
+    render json: {quizzes: @quizzes }
   end
 
   def create
