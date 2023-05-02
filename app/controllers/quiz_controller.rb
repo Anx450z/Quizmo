@@ -9,9 +9,9 @@ class QuizController < ApplicationController
   def create
     @quiz = Quiz.new(quiz_params)
     if @quiz.save
-      render json: { message: 'success' }
+      render json: { message: 'Quiz created' }
     else
-      render json: { status: :unprocessable_entity }
+      render json: { status: :unprocessable_entity, error: 'Couldn\'t create quiz'}
     end
   end
 

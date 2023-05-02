@@ -5,7 +5,7 @@ const Option = (props:any) => {
 
   const handleDeleteOption = async(id: string) => {
     await optionApi.deleteOption(id)
-    props.onOptionDelete()
+    props.onMutate()
   }
   
   return (

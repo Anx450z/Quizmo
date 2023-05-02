@@ -13,7 +13,7 @@ const CreateQuestion = (props:any) => {
       question: data.get('question') as string
     }
     await questionApi.createQuestion(id!, question)
-    props.onSubmit()
+    props.onMutate()
   }
   
   return (

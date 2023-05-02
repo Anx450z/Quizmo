@@ -11,9 +11,6 @@ const Quiz = () => {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  // const [selectedQuestion,setSelectedQuestion] = useState<string>()
-  // const [selectedOption,setSelectedOption] = useState<string>()
-
   interface Quiz extends QuizType {
     questions: QuestionType[]
   }
@@ -34,15 +31,7 @@ const Quiz = () => {
     mutate()
   }
 
-  const handleCreateQuestion = async () => {
-    mutate()
-  }
-
-  const handleCreateOption = async () => {
-    mutate()
-  }
-
-  const handleDeleteOption = async () => {
+  const handleMutateQuiz = async () => {
     mutate()
   }
 
@@ -62,7 +51,7 @@ const Quiz = () => {
         <>
           <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
           <button onClick={() => navigate('/')}>All Quizzes</button>
-          <CreateQuestion onSubmit={handleCreateQuestion}/>
+          <CreateQuestion onMutate={handleMutateQuiz}/>
           <p className="m-2 p-2 text-xl font-bold">Questions</p>
           <ul className="container flex-col">
             {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
@@ -73,8 +62,7 @@ const Quiz = () => {
                 handleDeleteQuestion={handleDeleteQuestion}
                 question={question.question}
                 options = {options}
-                onOptionCreate={handleCreateOption}
-                onOptionDelete={handleDeleteOption}
+                onMutate={handleMutateQuiz}
               />
             ))}
           </ul>

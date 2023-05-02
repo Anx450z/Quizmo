@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Documentation for lerning more
 
-Things you may want to cover:
+- for user login (https://medium.com/swlh/react-reactions-cfdde7f08dff)
+- for ReactSwr (https://www.youtube.com/watch?v=6gb6oyO1Tyg&t=1447s)
+- for resolving N+1 issue (https://engineering.gusto.com/a-visual-guide-to-using-includes-in-rails/)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
