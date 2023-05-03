@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'user/create'
-  get 'user/update'
-  get 'user/destroy'
-  get 'user/show'
+
   root to: 'home#index'
   get '*path', to: 'home#index'
 
@@ -16,4 +13,7 @@ Rails.application.routes.draw do
   delete '/option/:id', to: 'option#destroy'
 
   resources :user ,only: %i[create update destroy show]
+
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end
