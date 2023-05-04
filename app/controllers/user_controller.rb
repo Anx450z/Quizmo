@@ -4,7 +4,7 @@ class UserController < ApplicationController
     if @user.save
       render json: { message: 'User created successfully' }
     else
-      render json: { error: 'User creation failed', status: 500 }
+      render json: { error: @user.errors.full_messages, status: 500 }
     end
   end
 
@@ -13,7 +13,11 @@ class UserController < ApplicationController
   end
 
   def destroy
-    if @user.destroy(user_params) render json: { message: 'User deleted successfully' }
+    if @user.destroy(user_params)
+      render json: { message: 'User deleted successfully' }
+    else
+      render json: { error: @user.errors.full_messages, status: 500 }
+    end
   end
 
   def show
@@ -23,6 +27,6 @@ class UserController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :email)
+    params.require(:user).permit(:username, :password, :email, :password_confirmation)
   end
 end

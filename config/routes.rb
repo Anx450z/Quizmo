@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-  root to: 'home#index'
-  get '*path', to: 'home#index'
-
   resources :quiz do
     resources :question, only: %i[create update destroy]
   end
@@ -12,8 +8,12 @@ Rails.application.routes.draw do
   put '/option/:id', to: 'option#update'
   delete '/option/:id', to: 'option#destroy'
 
-  resources :user ,only: %i[create update destroy show]
+  resources :user, only: %i[create update destroy show]
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  # below routes have to place at the bottom
+  root to: 'home#index'
+  get '*path', to: 'home#index'
 end
