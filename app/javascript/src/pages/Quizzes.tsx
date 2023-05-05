@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import quizApi from '../apis/quiz'
-import useSwr, { mutate } from 'swr'
+import useSwr from 'swr'
 import { useNavigate } from 'react-router-dom'
 
 const Quizzes = () => {

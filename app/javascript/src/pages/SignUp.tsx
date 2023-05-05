@@ -14,7 +14,6 @@ const SignUp = () => {
     }
 
     await userApi.signup(user)
-    console.log(user)
   }
 
   return (
