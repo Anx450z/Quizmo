@@ -5,12 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 const Quizzes = () => {
   type Quiz = {
-    quiz: {
-      id: string
-      title: string
-      description: string
-    }
-    question_count: number | string
+    id: string
+    title: string
+    description: string
+    questions_count: number | string
   }
   const navigate = useNavigate()
 
@@ -45,29 +43,29 @@ const Quizzes = () => {
           <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
           <div>
             <ul>
-              {quizList?.map(({ quiz, question_count }: Quiz) => (
-                <li key={quiz.id} id={quiz.id.toString()} className="valid-quiz">
+              {quizList?.map(({ id, title, description, questions_count }: Quiz) => (
+                <li key={id} id={id.toString()} className="valid-quiz">
                   <div className="item-start flex justify-between font-semibold">
                     <div>
-                      {quiz.title}
-                      {question_count !== 0 ? <>
+                      {title}
+                      {questions_count !== 0 ? <>
                       
                       <label className="pill bg-green-100 text-green-700">
-                        {question_count} questions
+                        {questions_count} questions
                       </label>
                       </>:<>
                       <label className='pill bg-red-100 text-red-700'>No question</label>
                       </>}
                     </div>
                     <div>
-                      <button className="delete" onClick={() => deleteQuiz(quiz.id)}>
+                      <button className="delete" onClick={() => deleteQuiz(id)}>
                         Delete
                       </button>
-                      <button onClick={() => navigate(`/show_quiz/${quiz.id}`)}>view</button>
+                      <button onClick={() => navigate(`/show_quiz/${id}`)}>view</button>
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-sm text-slate-600">{quiz.description}</h3>
+                    <h3 className="text-sm text-slate-600">{description}</h3>
                   </div>
                 </li>
               ))}

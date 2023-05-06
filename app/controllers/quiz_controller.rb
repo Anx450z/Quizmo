@@ -3,13 +3,7 @@ class QuizController < ApplicationController
 
   def index
     @quizzes = current_user.quizzes
-    render json: { quizzes: @quizzes.includes(:questions).map do |quiz|
-      {
-        quiz:,
-        question_count: quiz.questions.count
-      }
-    end
-  }
+    render json: { quizzes: @quizzes }
   end
 
   def create
