@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom'
 
 const Quizzes = () => {
   type Quiz = {
-    id: string
-    title: string
-    description: string
+    quiz: {
+      id: string
+      title: string
+      description: string
+    }
+    question_count: number | string
   }
   const navigate = useNavigate()
 
@@ -38,24 +41,34 @@ const Quizzes = () => {
         <h2>Loading your quizzes...</h2>
       ) : (
         <>
-          <div className="bg-red-800">Hello</div>
-          <div className="absolute bottom-0 w-full bg-red-800">Hello</div>
+          <div className="bg-slate-300">Hello</div>
+          <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
           <div>
             <ul>
-              {quizList?.map(({ id, title, description }: Quiz, index: number) => (
-                <li key={id} id={id.toString()}>
-                  <label className="text-sm text-indigo-700">title</label>
-                  {title}
-                  <label className="text-sm text-indigo-700">description</label>
-                  {description}
-                  <button className="border text-red-800" onClick={() => deleteQuiz(id)}>
-                    delete
-                  </button>
-                  <button
-                    className="border text-blue-800"
-                    onClick={() => navigate(`/show_quiz/${id}`)}>
-                    view
-                  </button>
+              {quizList?.map(({ quiz, question_count }: Quiz) => (
+                <li key={quiz.id} id={quiz.id.toString()} className="valid-quiz">
+                  <div className="item-start flex justify-between font-semibold">
+                    <div>
+                      {quiz.title}
+                      {question_count !== 0 ? <>
+                      
+                      <label className="pill bg-green-100 text-green-700">
+                        {question_count} questions
+                      </label>
+                      </>:<>
+                      <label className='pill bg-red-100 text-red-700'>No question</label>
+                      </>}
+                    </div>
+                    <div>
+                      <button className="delete" onClick={() => deleteQuiz(quiz.id)}>
+                        Delete
+                      </button>
+                      <button onClick={() => navigate(`/show_quiz/${quiz.id}`)}>view</button>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm text-slate-600">{quiz.description}</h3>
+                  </div>
                 </li>
               ))}
             </ul>

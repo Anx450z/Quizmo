@@ -2,8 +2,14 @@ class QuizController < ApplicationController
   before_action :set_quiz, only: %i[show update destroy]
 
   def index
-    @quizzes = current_user.quizzes.all
-    render json: {quizzes: @quizzes }
+    @quizzes = current_user.quizzes
+    render json: { quizzes: @quizzes.includes(:questions).map do |quiz|
+      {
+        quiz:,
+        question_count: quiz.questions.count
+      }
+    end
+  }
   end
 
   def create

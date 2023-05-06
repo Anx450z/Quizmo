@@ -11,18 +11,18 @@ const QuestionCard = (props: any) => {
       className={invalidQuestion ? 'invalid-question' : 'valid-question'}>
       <div className="flex items-start justify-between ">
         <div>
-          <label className={invalidQuestion?'pill bg-red-200':'pill bg-slate-200'}>{props.index + 1}</label>
+          <label className={invalidQuestion?'pill bg-red-200 text-red-700':'pill bg-slate-200'}>{props.index + 1}</label>
           <label>{props.question}</label>
         </div>
         <div>
           {props.notEnoughOption ? (
             <>
-              <label className="pill bg-orange-200 text-orange-500">Not enough options</label>
+              <label className="pill bg-orange-200 text-orange-700">Not enough options</label>
             </>
           ) : null}
           {!props.containsCorrectOption ? (
             <>
-              <label className="pill bg-indigo-200 text-indigo-500">No correct option</label>
+              <label className="pill bg-indigo-200 text-indigo-700">No correct option</label>
             </>
           ) : null}
           <button
