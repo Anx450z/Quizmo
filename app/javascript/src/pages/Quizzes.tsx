@@ -48,14 +48,17 @@ const Quizzes = () => {
                   <div className="item-start flex justify-between font-semibold">
                     <div>
                       {title}
-                      {questions_count !== 0 ? <>
-                      
-                      <label className="pill bg-green-100 text-green-700">
-                        {questions_count} questions
-                      </label>
-                      </>:<>
-                      <label className='pill bg-red-100 text-red-700'>No question</label>
-                      </>}
+                      {questions_count! ? (
+                        <>
+                          <label className="pill bg-green-100 text-green-700">
+                            {questions_count} questions
+                          </label>
+                        </>
+                      ) : (
+                        <>
+                          <label className="pill bg-red-100 text-red-700">No questions</label>
+                        </>
+                      )}
                     </div>
                     <div>
                       <button className="delete" onClick={() => deleteQuiz(id)}>
