@@ -25,7 +25,9 @@ const Quizzes = () => {
   // This line of code imports and uses the `useSwr` hook from the `swr` library.
   // It fetches a list of quizzes from the specified endpoint, `/quiz`, with the data being returned as an array of `Quiz` objects.
   // The function getQuiz is called to fetch the data, which is then cached by the hook.
-  const { data: quizList, mutate } = useSwr<Quiz[]>('/quiz', getQuiz);
+  const { data: quizList, mutate } = useSwr<Quiz[]>('/quiz', getQuiz, {
+    revalidateOnFocus: false,
+  });
   
   return (
     <>

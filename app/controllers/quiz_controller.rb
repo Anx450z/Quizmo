@@ -2,12 +2,12 @@ class QuizController < ApplicationController
   before_action :set_quiz, only: %i[show update destroy]
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = current_user.quizzes.all
     render json: {quizzes: @quizzes }
   end
 
   def create
-    @quiz = Quiz.new(quiz_params)
+    @quiz = current_user.quizzes.new(quiz_params)
     if @quiz.save
       render json: { message: 'Quiz created' }
     else
@@ -40,6 +40,6 @@ class QuizController < ApplicationController
   end
 
   def set_quiz
-    @quiz = Quiz.find(params[:id])
+    @quiz = current_user.quizzes.find(params[:id])
   end
 end

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   validates_presence_of :email, uniqueness: true, length: {minimum:6, maximum:30}
   before_save :downcase_email
 
+  has_many :quizzes, dependent: :destroy
+
   private
 
   def downcase_email
