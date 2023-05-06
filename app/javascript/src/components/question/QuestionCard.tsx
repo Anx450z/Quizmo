@@ -3,16 +3,28 @@ import OptionControl from './OptionControl'
 import Option from './Option'
 
 const QuestionCard = (props: any) => {
+  const invalidQuestion = props.notEnoughOption || !props.containsCorrectOption
   return (
-    <li key={props.id} id={props.id} className="my-1 rounded-lg border p-1">
+    <li
+      key={props.id}
+      id={props.id}
+      className={invalidQuestion ? 'invalid-question' : 'valid-question'}>
       <div className="flex items-start justify-between ">
         <div>
-          <label className="number">
-            {props.index + 1}
-          </label>
+          <label className={invalidQuestion?'pill bg-red-200':'pill bg-slate-200'}>{props.index + 1}</label>
           <label>{props.question}</label>
         </div>
         <div>
+          {props.notEnoughOption ? (
+            <>
+              <label className="pill bg-orange-200 text-orange-500">Not enough options</label>
+            </>
+          ) : null}
+          {!props.containsCorrectOption ? (
+            <>
+              <label className="pill bg-indigo-200 text-indigo-500">No correct option</label>
+            </>
+          ) : null}
           <button
             className="delete text-red-500"
             onClick={() => props.handleDeleteQuestion(props.id)}>
@@ -21,8 +33,8 @@ const QuestionCard = (props: any) => {
           <button>Edit</button>
         </div>
       </div>
-      <OptionControl question_id={props.id} onMutate={props.onMutate}/>
-      <Option options={props.options} onMutate={props.onMutate}/>
+      <OptionControl question_id={props.id} onMutate={props.onMutate} />
+      <Option options={props.options} onMutate={props.onMutate} />
     </li>
   )
 }

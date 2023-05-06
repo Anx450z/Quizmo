@@ -54,7 +54,7 @@ const Quiz = () => {
           <CreateQuestion onMutate={handleMutateQuiz}/>
           <p className="m-2 p-2 text-xl font-bold">Questions</p>
           <ul className="container flex-col">
-            {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
+            {quiz?.questions.map(({ question, options, extra_data }: QuestionType, index: number) => (
               <QuestionCard
                 id={question.id}
                 key={question.id}
@@ -63,6 +63,8 @@ const Quiz = () => {
                 question={question.question}
                 options = {options}
                 onMutate={handleMutateQuiz}
+                containsCorrectOption = {extra_data.contains_correct_options}
+                notEnoughOption = {extra_data.not_enough_options}
               />
             ))}
           </ul>

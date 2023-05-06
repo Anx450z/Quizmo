@@ -7,7 +7,11 @@ export type QuestionType = {
     id: string,
     question: string
   }
-  options: OptionType[]
+  options: OptionType[],
+  extra_data: {
+    contains_correct_options: boolean,
+    not_enough_options: boolean
+  }
 }
 
 type Question = {
