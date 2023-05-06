@@ -20,7 +20,11 @@ class QuizController < ApplicationController
                    questions: @quiz.questions.includes(:options).map do |question|
                                 {
                                   question:,
-                                  options: question.options
+                                  options: question.options,
+                                  extra_data: {
+                                      contains_correct_options: question.contains_correct_options?,
+                                      not_enough_options: question.not_enough_options?
+                                  }
                                 }
                               end }
   end

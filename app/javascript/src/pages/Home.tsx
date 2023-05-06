@@ -8,9 +8,8 @@ import Login from './Login'
 const Home = () => {
   const navigate = useNavigate()
   const handleUserIsLogged = async () => {
-   const response = await userApi.is_logged_in()
-   console.log('data',response.data)
-   return response.data
+    const response = await userApi.is_logged_in()
+    return response.data
   }
 
   const logout = async () => {
@@ -20,22 +19,32 @@ const Home = () => {
 
   const logged_in_mutate = async () => mutate()
 
-  const { data: current_user, mutate } = useSwr('/is_logged_in', handleUserIsLogged, {
-    revalidateOnFocus: false
+  const {
+    data: current_user,
+    mutate,
+    isLoading,
+  } = useSwr('/is_logged_in', handleUserIsLogged, {
+    revalidateOnFocus: false,
   })
 
   return (
     <>
-      {current_user?.is_logged_in ? (
-        <>
-          <label>{current_user.user?.username}</label>
-          <button onClick={() => navigate('/new_quiz')}>Create new quiz</button>
-          <button onClick={logout}>Logout</button>
-          <Quizzes />
-        </>
+      {isLoading ? (
+        <h1>Loading...</h1>
       ) : (
         <>
-          <Login mutate={logged_in_mutate} />
+          {current_user?.is_logged_in ? (
+            <>
+              <label>{current_user.user?.username}</label>
+              <button onClick={() => navigate('/new_quiz')}>Create new quiz</button>
+              <button onClick={logout}>Logout</button>
+              <Quizzes />
+            </>
+          ) : (
+            <>
+              <Login mutate={logged_in_mutate} />
+            </>
+          )}
         </>
       )}
     </>
