@@ -4,14 +4,12 @@ import { OptionType } from './option'
 export type QuestionType = {
   id: string
   question: {
-    id: string,
-    question: string
+    correct_options: number,
+    id: string|number,
+    question: string,
+    number_of_options: number
   }
   options: OptionType[],
-  extra_data: {
-    contains_correct_options: boolean,
-    not_enough_options: boolean
-  }
 }
 
 type Question = {

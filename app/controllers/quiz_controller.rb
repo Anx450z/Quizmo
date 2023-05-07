@@ -17,16 +17,16 @@ class QuizController < ApplicationController
 
   def show
     render json: { quiz: @quiz,
-                   questions: @quiz.questions.includes(:options).map do |question|
-                                {
-                                  question:,
-                                  options: question.options,
-                                  extra_data: {
-                                      contains_correct_options: question.contains_correct_options?,
-                                      not_enough_options: question.not_enough_options?
-                                  }
-                                }
-                              end }
+      questions: @quiz.questions.left_joins(:options).select('questions.*, COUNT(CASE
+      WHEN options.id > 2 THEN true ELSE false END) AS number_of_options, SUM(
+        CAST(CASE WHEN options.correct THEN true ELSE false END AS INT)) AS correct_options
+      ').group('questions.id').map do |question|
+      {
+        question: question,
+        options: question.options
+      }end,
+                  }
+
   end
 
   def update
