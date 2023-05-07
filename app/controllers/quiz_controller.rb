@@ -16,18 +16,7 @@ class QuizController < ApplicationController
   end
 
   def show
-    @questions = @quiz.questions.left_joins(:options).select('questions.*, COUNT(CASE
-      WHEN options.id > 2 THEN true ELSE false END) AS number_of_options, SUM(CASE WHEN options.correct THEN 1 ELSE 0 END) AS correct_options
-      ').group('questions.id')
-    @options = @quiz.questions.joins(:options).select('questions.id, options.*')      
-
-    @questions_with_options = @questions.map do |question| {
-      question:,
-      options: @options.select{ |option| question[:id] == option[:question_id] }
-    }
-    end
-
-    render json: { quiz: @quiz,questions: @questions_with_options }
+    render json: { quiz: @quiz, questions: @quiz.questions_with_options}
   end
 
   def update
