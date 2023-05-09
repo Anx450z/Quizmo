@@ -17,7 +17,7 @@ const CreateQuestion = (props:any) => {
   }
   
   return (
-    <div className="flex-col border rounded container">
+    <div className="main-question">
       <label>Add new question</label>
       <br></br>
       <QuestionForm button="Add" onSubmit={handleOnSubmit}/>

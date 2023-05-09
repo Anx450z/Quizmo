@@ -16,11 +16,14 @@ const OptionControl = (props: any) => {
   }
 
   return (
-    <form onSubmit={handleOnSubmit} className='flex items-start'>
+    <form onSubmit={handleOnSubmit} className="flex items-start">
       <input placeholder="Add option" name="option"></input>
-      <div className='pill bg-green-100'>
-        <input type="checkbox" onChange={() => setCorrect(!correct)}></input>
-        <label className=' text-green-700'>mark correct </label>
+      <div className="pill flex items-center bg-blue-100 align-middle">
+        <input
+          type="checkbox"
+          className="accent-blue-500"
+          onChange={() => setCorrect(!correct)}></input>
+        <label className=" font-semibold text-blue-500">mark correct </label>
       </div>
       <button type="submit">Add</button>
     </form>

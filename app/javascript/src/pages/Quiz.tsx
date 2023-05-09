@@ -44,7 +44,7 @@ const Quiz = () => {
   const { data: quiz, isLoading, mutate } = useSwr<Quiz>([`quiz`, id], getQuiz)
 
   return (
-    <div className="w-screen flex-col" id="quiz-container">
+    <div className="w-screen flex-col bg-slate-100" id="quiz-container">
       {isLoading ? (
         <>Loading...</>
       ) : (
@@ -52,8 +52,15 @@ const Quiz = () => {
           <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
           <button onClick={() => navigate('/')}>All Quizzes</button>
           <CreateQuestion onMutate={handleMutateQuiz}/>
-          <p className="m-2 p-2 text-xl font-bold">Questions</p>
-          <ul className="container flex-col">
+          <div className='flex align-middle items-center'>
+            <label className="m-2 p-2 text-xl font-bold">Questions</label>
+            <div>
+              <label>Filters</label>
+              <label className='pill bg-orange-200 text-orange-500'> Not enough options</label>
+              <label className='pill bg-indigo-200 text-indigo-500'> No correct options</label>
+            </div>
+          </div>
+          <ul className="container">
             {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
               <QuestionCard
                 id={question.id}
