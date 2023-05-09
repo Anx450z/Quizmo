@@ -6,10 +6,12 @@ import useSwr from 'swr'
 import questionApi, { QuestionType } from '../apis/questions'
 import CreateQuestion from '../components/question/CreateQuestion'
 import QuestionCard from '../components/question/QuestionCard'
+import FilterQuestions from '../components/question/FilterQuestions'
 
 const Quiz = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const [invalidQuestionsCount, setInvalidQuestionsCount] = useState<number>(0)
 
   interface Quiz extends QuizType {
     questions: QuestionType[]
@@ -35,7 +37,6 @@ const Quiz = () => {
     mutate()
   }
 
-
   const handleDeleteQuestion = async (question_id: string) => {
     await questionApi.deleteQuestion(id!, question_id!)
     mutate()
@@ -51,27 +52,25 @@ const Quiz = () => {
         <>
           <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
           <button onClick={() => navigate('/')}>All Quizzes</button>
-          <CreateQuestion onMutate={handleMutateQuiz}/>
-          <div className='flex align-middle items-center'>
-            <label className="m-2 p-2 text-xl font-bold">Questions</label>
-            <div>
-              <label>Filters</label>
-              <label className='pill bg-orange-200 text-orange-500'> Not enough options</label>
-              <label className='pill bg-indigo-200 text-indigo-500'> No correct options</label>
-            </div>
+          <div className="main-question">
+            <CreateQuestion onMutate={handleMutateQuiz} newIndex={quiz?.questions.length! + 1} />
+            <FilterQuestions
+              allQuestionsCount={quiz?.questions.length}
+              invalidQuestionsCount={invalidQuestionsCount}
+            />
           </div>
           <ul className="container">
             {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
               <QuestionCard
                 id={question.id}
                 key={question.id}
-                index={index}
+                index={quiz?.questions.length - index - 1}
                 handleDeleteQuestion={handleDeleteQuestion}
                 question={question.question}
-                options = {options}
+                options={options}
                 onMutate={handleMutateQuiz}
-                containsCorrectOption = {question.correct_options}
-                notEnoughOption = {question.number_of_options < 2}
+                containsCorrectOption={question.correct_options}
+                notEnoughOption={question.number_of_options < 2}
               />
             ))}
           </ul>

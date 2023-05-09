@@ -17,11 +17,12 @@ const CreateQuestion = (props:any) => {
   }
   
   return (
-    <div className="main-question">
+    <>
+      <label className='pill bg-red-100 text-red-500'>{props.newIndex}</label>
       <label>Add new question</label>
       <br></br>
       <QuestionForm button="Add" onSubmit={handleOnSubmit}/>
-    </div>
+    </>
   )
 }
 
