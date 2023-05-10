@@ -11,12 +11,12 @@ class QuizController < ApplicationController
     if @quiz.save
       render json: { message: 'Quiz created' }
     else
-      render json: { status: :unprocessable_entity, error: 'Couldn\'t create quiz'}
+      render json: { status: :unprocessable_entity, error: 'Couldn\'t create quiz' }
     end
   end
 
   def show
-    render json: { quiz: @quiz, questions: @quiz.questions_with_options}
+    render json: { quiz: @quiz, questions: @quiz.questions_with_options }
   end
 
   def update

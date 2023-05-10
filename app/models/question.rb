@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   default_scope { order(created_at: :desc) }
-  
+
   belongs_to :quiz, counter_cache: true
   has_many :options, dependent: :destroy
 
