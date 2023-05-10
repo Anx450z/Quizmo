@@ -33,9 +33,7 @@ const Quiz = () => {
     mutate()
   }
 
-  const handleMutateQuiz = async () => {
-    mutate()
-  }
+  const handleMutateQuiz = async () => mutate()
 
   const handleDeleteQuestion = async (question_id: string) => {
     await questionApi.deleteQuestion(id!, question_id!)
