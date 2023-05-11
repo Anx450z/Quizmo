@@ -5,12 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const Login = (props:any) => {
   const navigate = useNavigate()
   
-  const handleLogin = async(e:any) => {
-    const data = new FormData(e.currentTarget)
+  const handleLogin = async() => {
     const user = {
       user:{
-        username: data.get('username') as string,
-        password: data.get('password') as string
+        username: (document.getElementById('username') as HTMLInputElement).value as string,
+        password: (document.getElementById('password') as HTMLInputElement).value as string
       }
     }
 
@@ -19,13 +18,13 @@ const Login = (props:any) => {
   
   }
   return (
-    <form className='border flex-col' onSubmit={handleLogin}>
+    <div className='border flex-col'>
       <label>username</label>
-      <input placeholder='username' name='username'></input>
+      <input placeholder='username' id='username'></input>
       <label>password</label>
-      <input type='password' placeholder='*********' name='password'></input>
-      <button type='submit'>Login</button>
-    </form>
+      <input type='password' placeholder='*********' id='password'></input>
+      <button onClick={handleLogin}>Login</button>
+    </div>
   )
 }
 
