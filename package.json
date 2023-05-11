@@ -11,6 +11,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^6.10.0",
     "swr": "^2.1.5",
     "tailwindcss": "^3.3.1",
@@ -18,7 +19,8 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "prettier-format": "prettier --config .prettierrc 'app/javascript/src/**/*.tsx' --write"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

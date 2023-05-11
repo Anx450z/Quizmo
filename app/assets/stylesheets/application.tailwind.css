@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import 'react-quill/dist/quill.snow.css';
+@import 'react-quill/dist/quill.bubble.css';
 
 @layer components {
   button {
@@ -48,5 +53,9 @@
 
   .x{
     @apply rounded-none rounded-r-lg p-1 px-2 ml-0 text-sm text-red-500 border-2 hover:border-white hover:bg-red-500 hover:text-white
+  }
+  
+  .no-border{
+    @apply border-none
   }
 }
