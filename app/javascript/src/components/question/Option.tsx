@@ -1,5 +1,6 @@
 import React from 'react'
 import optionApi, {OptionType} from '../../apis/option'
+import ReactQuill from 'react-quill'
 
 const Option = (props:any) => {
 
@@ -12,8 +13,12 @@ const Option = (props:any) => {
    <ul className='grid grid-cols-2 content-center place-items-center '>
     {props.options?.map(({id, option_text, correct} : OptionType, index:number) => (
       <li key={id} className='p-2 '>
-        <label className={correct?'correct-option':'option'}>{option_text}</label>
-        <button className='x' onClick={() => handleDeleteOption(id)}>x</button>
+        <div className='grid grid-cols-10'>
+          <div className={correct?'correct-option':'option'}>
+            <ReactQuill readOnly value={option_text} theme='bubble'/>
+          </div>
+            <button className='delete' onClick={() => handleDeleteOption(id)}>x</button>
+        </div>
       </li>
     ))}
    </ul>

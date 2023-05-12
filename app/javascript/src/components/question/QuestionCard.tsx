@@ -1,6 +1,7 @@
 import React from 'react'
 import OptionControl from './OptionControl'
 import Option from './Option'
+import ReactQuill from 'react-quill'
 
 const QuestionCard = (props: any) => {
   const invalidQuestion = props.notEnoughOption || !props.containsCorrectOption
@@ -9,10 +10,10 @@ const QuestionCard = (props: any) => {
       key={props.id}
       id={props.id}
       className={invalidQuestion ? 'invalid-question' : 'valid-question'}>
-      <div className="flex items-start justify-between ">
-        <div>
-          <label className={invalidQuestion?'pill bg-red-100 text-red-500':'pill bg-slate-200 text-slate-500'}>{props.index + 1}</label>
-          <label>{props.question}</label>
+      <div className="flex justify-between align-middle items-center">
+        <div className='flex justify-center align-middle items-center w-36'>
+          <div className={invalidQuestion?'pill bg-red-100 text-red-500':'pill bg-slate-200 text-slate-500'}>{props.index + 1}</div>
+          <ReactQuill readOnly value={props.question} theme='bubble' className='w-[300px]'/>
         </div>
         <div>
           {props.notEnoughOption ? (

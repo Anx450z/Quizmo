@@ -8,6 +8,13 @@
 @import 'react-quill/dist/quill.bubble.css';
 
 @layer components {
+  .ql-container {
+    font-size: 15px !important;
+    border: none !important;
+  }
+  .ql-toolbar {
+    border: none !important
+  }
   button {
     @apply border bg-white text-blue-500 text-xs rounded-lg px-2 py-1 hover:bg-blue-700 hover:text-white m-1 hover:border-transparent
   }
@@ -29,10 +36,10 @@
   }
 
   .option{
-    @apply p-1 px-4 mr-0 text-sm bg-slate-100 text-slate-700 font-semibold rounded-l-lg border-2 border-transparent hover:border-blue-700 
+    @apply col-span-9 p-1 px-4 mr-0 text-sm bg-slate-100 text-slate-700 rounded-l-lg border-2 border-transparent hover:border-blue-700 
   }
   .correct-option{
-    @apply p-1 px-4 mr-0 text-sm bg-green-100 text-green-700 rounded-l-lg font-semibold border-2 border-transparent hover:border-green-700
+    @apply col-span-9 p-1 px-4 mr-0 text-sm bg-green-100 text-green-700 rounded-l-lg border-2 border-transparent hover:border-green-700
   }
 
   .invalid-question, .invalid-quiz {
@@ -51,11 +58,8 @@
     @apply  m-1 rounded-full px-2.5 py-1 text-xs font-semibold
   }
 
-  .x{
-    @apply rounded-none rounded-r-lg p-1 px-2 ml-0 text-sm text-red-500 border-2 hover:border-white hover:bg-red-500 hover:text-white
+  .remove-button{
+    @apply col-span-1 p-3 text-center rounded-full  text-sm text-red-500 border-2 hover:border-white hover:bg-red-500 hover:text-white
   }
   
-  .no-border{
-    @apply border-none
-  }
 }
