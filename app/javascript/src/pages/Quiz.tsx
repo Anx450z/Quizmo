@@ -12,6 +12,8 @@ const Quiz = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const [invalidQuestionsCount, setInvalidQuestionsCount] = useState<number>(0)
+  const [title, setTitle] = useState<string>()
+  const [description, setDescription] = useState<string>()
 
   interface Quiz extends QuizType {
     questions: QuestionType[]
@@ -19,15 +21,15 @@ const Quiz = () => {
 
   const getQuiz = async () => {
     const response = await quizApi.show(id!)
+    setTitle(response.data.quiz.title)
+    setDescription(response.data.quiz.description)
     return response.data
   }
 
-  const handleUpdateQuiz = async (e: any) => {
-    const data = new FormData(e.currentTarget)
-
+  const handleUpdateQuiz = async () => {
     const quiz = {
-      title: data.get('title') as string,
-      description: data.get('description') as string,
+      title: title as string,
+      description: description as string,
     }
     await quizApi.update(id!, quiz)
     mutate()
@@ -48,7 +50,15 @@ const Quiz = () => {
         <>Loading...</>
       ) : (
         <>
-          <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
+          <QuizForm
+            data={quiz}
+            button={'Update'}
+            handleSubmit={handleUpdateQuiz}
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+          />
           <button onClick={() => navigate('/')}>All Quizzes</button>
           <div className="main-question z-[2]">
             <CreateQuestion onMutate={handleMutateQuiz} newIndex={quiz?.questions.length! + 1} />

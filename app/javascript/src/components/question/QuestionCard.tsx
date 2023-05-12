@@ -10,14 +10,18 @@ const QuestionCard = (props: any) => {
       key={props.id}
       id={props.id}
       className={invalidQuestion ? 'invalid-question' : 'valid-question'}>
-      <div className="flex justify-between align-middle items-center">
-        <div className='flex justify-center align-middle items-center'>
-          <div className={invalidQuestion?'pill bg-red-100 text-red-500':'pill bg-slate-200 text-slate-500'}>{props.index + 1}</div>
-          <div className='w-full'>
-            <ReactQuill readOnly value={props.question} theme='bubble'/>
+      <div className="flex items-center justify-between align-middle">
+        <div className="flex items-center justify-center align-middle">
+          <div
+            className={
+              invalidQuestion ? 'pill bg-red-100 text-red-500' : 'pill bg-slate-200 text-slate-500'
+            }>
+            {props.index + 1}
           </div>
+
+          <label>Question</label>
         </div>
-        <div className='flex items-center align-middle'>
+        <div className="flex items-center align-middle">
           {props.notEnoughOption ? (
             <>
               <label className="pill bg-orange-100 text-orange-500">Not enough options</label>
@@ -35,6 +39,9 @@ const QuestionCard = (props: any) => {
           </button>
           <button>Edit</button>
         </div>
+      </div>
+      <div className="w-full">
+        <ReactQuill readOnly value={props.question} theme="bubble" />
       </div>
       <OptionControl question_id={props.id} onMutate={props.onMutate} />
       <Option options={props.options} onMutate={props.onMutate} />

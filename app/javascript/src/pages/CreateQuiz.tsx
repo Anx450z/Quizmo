@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import QuizForm from './QuizForm'
 import { useNavigate } from 'react-router-dom'
 import quizApi from '../apis/quiz'
 
 const CreateQuiz = () => {
-  const handleCreateQuiz = async (e:any) => {
+  const [title, setTitle] = useState<string>()
+  const [description, setDescription] = useState<string>()
 
-    const data = new FormData(e.currentTarget)
+  const handleCreateQuiz = async () => {
 
     const quiz = {
-      title: data.get('title')as string,
-      description: data.get('description') as string
+      title: title as string,
+      description: description as string,
     }
 
     await quizApi.create(quiz)
@@ -19,8 +20,15 @@ const CreateQuiz = () => {
   const navigate = useNavigate()
   return (
     <>
-      <QuizForm button={"Create"} handleSubmit={handleCreateQuiz}/>
-      <button onClick={()=>navigate('/')}>All Quizzes</button>
+      <QuizForm
+        button={'Create'}
+        handleSubmit={handleCreateQuiz}
+        title={title}
+        setTitle={setTitle}
+        description={description}
+        setDescription={setDescription}
+      />
+      <button onClick={() => navigate('/')}>All Quizzes</button>
     </>
   )
 }

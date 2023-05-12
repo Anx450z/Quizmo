@@ -26,22 +26,22 @@ const OptionControl = (props: any) => {
 
   return (
     <div className="flex items-center align-middle justify-between px-2">
-      <div className='border rounded-xl min-w-[300px] max-w-3xl z-[1]'>        
+      <div className='border rounded-xl min-w-[400px] w-full z-[1]'>        
         <ReactQuill
-        placeholder='Option goes here...'
+        placeholder='Add new option here...'
           value={value}
           onChange={setValue}
           theme="bubble"
           modules={modules}
         />
       </div>
-      <div className='flex items-start'>
+      <div className='flex items-center align-middle'>
         <div className="pill flex items-center bg-blue-100 align-middle">
           <input
             type="checkbox"
             className="accent-blue-500"
             onChange={() => setCorrect(!correct)}></input>
-          <label className=" font-semibold text-blue-500">mark correct </label>
+          <label className=" font-semibold text-blue-500">correct?</label>
         </div>
         <button onClick={handleOnSubmit}>Add</button>
       </div>

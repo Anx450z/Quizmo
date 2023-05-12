@@ -1,23 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
+import ReactQuill from 'react-quill'
 
 const QuizForm = (props: any) => {
-  useEffect(() => {
-    ;(document.getElementById('title') as HTMLInputElement).placeholder =
-      props.data?.quiz.title || ''
-    ;(document.getElementById('description') as HTMLInputElement).placeholder =
-      props.data?.quiz.description || ''
-  }, [])
+  const modules = {
+    toolbar: [
+      [{ font: [] }],
+      ['bold', 'italic', 'underline'],
+      [{ script: 'sub' }, { script: 'super' }],
+    ],
+  }
+
   return (
     <div className="flex-col border rounded m-1 p-1">
-      <form onSubmit={props.handleSubmit}>
-        {/* <label>Title : </label> */}
-        <input required placeholder="Title" id="title" name="title"></input>
-        <br></br>
-        {/* <label>description : </label> */}
-        <textarea placeholder="Description" id="description" name="description"></textarea>
-        <br></br>
-        <button type="submit" className=''>{props.button}</button>
-      </form>
+      <div>
+        <div className='bg-white rounded-xl border'>
+          <ReactQuill value={props.title} onChange={props.setTitle} modules={modules} theme='bubble'/>
+        </div>
+        <div className='bg-white rounded-xl border'>
+          <ReactQuill value={props.description} onChange={props.setDescription} modules={modules} theme='bubble'/>
+        </div>
+        <button onClick={props.handleSubmit} className=''>{props.button}</button>
+      </div>
     </div>
   )
 }
