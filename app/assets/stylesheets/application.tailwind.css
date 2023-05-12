@@ -55,7 +55,7 @@
  }
 
   .pill{
-    @apply  m-1 rounded-full px-2.5 py-1 text-xs font-semibold
+    @apply flex align-middle items-center m-1 rounded-full px-2.5 py-1 text-xs font-semibold text-center
   }
 
   .remove-button{

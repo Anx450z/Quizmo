@@ -11,11 +11,13 @@ const QuestionCard = (props: any) => {
       id={props.id}
       className={invalidQuestion ? 'invalid-question' : 'valid-question'}>
       <div className="flex justify-between align-middle items-center">
-        <div className='flex justify-center align-middle items-center w-36'>
+        <div className='flex justify-center align-middle items-center'>
           <div className={invalidQuestion?'pill bg-red-100 text-red-500':'pill bg-slate-200 text-slate-500'}>{props.index + 1}</div>
-          <ReactQuill readOnly value={props.question} theme='bubble' className='w-[300px]'/>
+          <div className='w-full'>
+            <ReactQuill readOnly value={props.question} theme='bubble'/>
+          </div>
         </div>
-        <div>
+        <div className='flex items-center align-middle'>
           {props.notEnoughOption ? (
             <>
               <label className="pill bg-orange-100 text-orange-500">Not enough options</label>

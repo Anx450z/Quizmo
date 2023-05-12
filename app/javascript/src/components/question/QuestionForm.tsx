@@ -35,7 +35,7 @@ const QuestionForm = (props: any) => {
             value={value}
             onChange={setValue}
             theme="snow"
-            className="bg-white h-36"
+            className="bg-white"
           />
         </div>
         <br></br>

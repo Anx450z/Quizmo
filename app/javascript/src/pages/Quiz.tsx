@@ -50,7 +50,7 @@ const Quiz = () => {
         <>
           <QuizForm data={quiz} button={'Update'} handleSubmit={handleUpdateQuiz} />
           <button onClick={() => navigate('/')}>All Quizzes</button>
-          <div className="main-question z-[1]">
+          <div className="main-question z-[2]">
             <CreateQuestion onMutate={handleMutateQuiz} newIndex={quiz?.questions.length! + 1} />
             <FilterQuestions
               allQuestionsCount={quiz?.questions.length}
