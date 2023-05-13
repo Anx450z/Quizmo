@@ -18,7 +18,6 @@ const QuestionCard = (props: any) => {
             }>
             {props.index + 1}
           </div>
-
           <label>Question</label>
         </div>
         <div className="flex items-center align-middle">

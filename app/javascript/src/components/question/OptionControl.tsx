@@ -34,6 +34,7 @@ const OptionControl = (props: any) => {
           theme="bubble"
           modules={modules}
         />
+        <button onClick={()=> setValue("")}>clear</button>
       </div>
       <div className='flex items-center align-middle'>
         <div className="pill flex items-center bg-blue-100 align-middle">

@@ -1,7 +1,6 @@
 import React from 'react'
 
 const FilterQuestions = (props:any) => {
-  console.log(props.invalidQuestionsCount)
   const validQuestionsCount = props.allQuestionsCount - props.invalidQuestionsCount 
   return (
     <div className="flex items-center align-middle justify-between">

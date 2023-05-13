@@ -24,9 +24,9 @@ const QuestionForm = (props: any) => {
     props.onMutate()
   }
   return (
-    <div className="flex-col z-20">
-      <div id="question" onSubmit={props.onSubmit}>
-        <div className="w-full rounded-2xl border border-b-4 py-2">
+    <div className="z-20">
+      <div id="question">
+        <div className="w-full rounded-2xl border py-2 px-2">
           <ReactQuill
             placeholder="Add new question here..."
             modules={modules}
@@ -35,8 +35,8 @@ const QuestionForm = (props: any) => {
             theme="snow"
             className="bg-white"
           />
+          <button onClick={handleOnSubmit}>{props.button}</button>
         </div>
-        <button onClick={handleOnSubmit}>{props.button}</button>
       </div>
     </div>
   )
