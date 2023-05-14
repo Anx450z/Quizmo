@@ -45,7 +45,7 @@ const Quiz = () => {
   const { data: quiz, isLoading, mutate } = useSwr<Quiz>([`quiz`, id], getQuiz)
 
   return (
-    <div className="w-screen flex-col bg-slate-100" id="quiz-container">
+    <div className="w-screen flex-col bg-white" id="quiz-container">
       {isLoading ? (
         <>Loading...</>
       ) : (
@@ -60,13 +60,7 @@ const Quiz = () => {
             setDescription={setDescription}
           />
           <button onClick={() => navigate('/')}>All Quizzes</button>
-          <div className="container main-question z-[2]">
-            <CreateQuestion onMutate={handleMutateQuiz} newIndex={quiz?.questions.length! + 1} />
-            <FilterQuestions
-              allQuestionsCount={quiz?.questions.length}
-              invalidQuestionsCount={invalidQuestionsCount}
-            />
-          </div>
+         
           <ul className="container">
             {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
               <QuestionCard
@@ -82,6 +76,13 @@ const Quiz = () => {
               />
             ))}
           </ul>
+          <div className="container main-question z-[2]">
+            <CreateQuestion onMutate={handleMutateQuiz} newIndex={quiz?.questions.length! + 1} />
+            <FilterQuestions
+              allQuestionsCount={quiz?.questions.length}
+              invalidQuestionsCount={invalidQuestionsCount}
+            />
+          </div>
         </>
       )}
     </div>

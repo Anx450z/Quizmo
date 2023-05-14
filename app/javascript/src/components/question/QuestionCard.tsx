@@ -8,7 +8,7 @@ const QuestionCard = (props: any) => {
   return (
     <li
       key={props.id}
-      id={props.id}
+      id={'question'+props.id}
       className={invalidQuestion ? 'invalid-question' : 'valid-question'}>
       <div className="flex items-center justify-between align-middle">
         <div className="flex items-center justify-center align-middle">

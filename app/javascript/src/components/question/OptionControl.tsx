@@ -15,6 +15,9 @@ const OptionControl = (props: any) => {
   }
 
   const handleOnSubmit = async () => {
+    if (!value){
+      return
+    }
     const option = {
       option_text: value!,
       correct: correct,
@@ -26,7 +29,7 @@ const OptionControl = (props: any) => {
 
   return (
     <div className="flex items-center align-middle justify-between px-2">
-      <div className='border rounded-xl min-w-[400px] w-full z-[1]'>        
+      <div className=' bg-white/90 rounded-xl min-w-[400px] w-full z-[1]'>        
         <ReactQuill
         placeholder='Add new option here...'
           value={value}
@@ -35,15 +38,12 @@ const OptionControl = (props: any) => {
           modules={modules}
         />
         <button onClick={()=> setValue("")}>clear</button>
-      </div>
-      <div className='flex items-center align-middle'>
-        <div className="pill flex items-center bg-blue-100 align-middle">
-          <input
+        <input
             type="checkbox"
             className="accent-blue-500"
-            onChange={() => setCorrect(!correct)}></input>
-          <label className=" font-semibold text-blue-500">correct?</label>
-        </div>
+            onChange={() => setCorrect(!correct)}>
+        </input>
+        <label className='text-xs text-blue-500 text-center'>correct?</label>
         <button onClick={handleOnSubmit}>Add</button>
       </div>
     </div>
