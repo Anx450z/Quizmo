@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :quiz do
     resources :question, only: %i[create update destroy]
   end
+  get '/quiz/:id/preview',  to: 'quiz#preview'
 
   post '/question/:question_id/option', to: 'option#create'
   patch '/option/:id', to: 'option#update'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/is_logged_in', to: 'sessions#is_logged_in?'
   delete '/logout', to: 'sessions#destroy'
+
+  post '/marked_option', to: 'marked_option#create'
 
   # below routes have to place at the bottom
   root to: 'home#index'

@@ -1,5 +1,5 @@
 class QuizController < ApplicationController
-  before_action :set_quiz, only: %i[show update destroy]
+  before_action :set_quiz, only: %i[show update destroy preview]
 
   def index
     @quizzes = current_user.quizzes
@@ -17,6 +17,10 @@ class QuizController < ApplicationController
 
   def show
     render json: { quiz: @quiz, questions: @quiz.questions_with_options }
+  end
+
+  def preview
+    render json: { quiz: @quiz, questions: @quiz.test_questions}
   end
 
   def update

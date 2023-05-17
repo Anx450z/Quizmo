@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_182057) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_160849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "marked_options", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.bigint "question_id"
+    t.bigint "user_id"
+    t.integer "marked_option"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "options", force: :cascade do |t|
     t.string "option_text", null: false

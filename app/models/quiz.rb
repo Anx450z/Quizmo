@@ -12,8 +12,29 @@ class Quiz < ApplicationRecord
       ').group('questions.id')
   end
 
+  # TODO: Update with quiz_setting model
+  def shuffled_questions
+    all_questions.shuffle
+  end
+
   def all_options
     questions.joins(:options).select('questions.id, options.*')
+  end
+
+  def all_unmarked_options
+    questions.joins(:options).select('questions.id, options.id, options.option_text, options.question_id')
+  end
+
+  def test_questions
+    @all_options = all_unmarked_options
+    @all_questions = all_questions
+
+    @all_questions.map do |question|
+      {
+        question:,
+        options: @all_options.select{ |option| question[:id] == option[:question_id]}
+      }
+    end
   end
 
   def questions_with_options
