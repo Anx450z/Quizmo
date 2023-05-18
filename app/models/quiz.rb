@@ -2,6 +2,7 @@ class Quiz < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   has_many :questions, dependent: :destroy
+  has_many :marked_options
   belongs_to :user
 
   validates_presence_of :title, on: %i[create update], message: 'title is required'
@@ -35,6 +36,12 @@ class Quiz < ApplicationRecord
         options: @all_options.select{ |option| question[:id] == option[:question_id]}
       }
     end
+  end
+
+  def quiz_score
+    @marked_options = marked_options
+    @correct_options = all_options.select{ |option| option[:correct] }
+    score = (@correct_options.pluck(:id) & @marked_options.pluck(:marked_option)).length
   end
 
   def questions_with_options
