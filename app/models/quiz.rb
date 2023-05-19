@@ -31,21 +31,26 @@ class Quiz < ApplicationRecord
   end
 
   def test_questions
-    @all_options = all_unmarked_options
-    @all_questions = shuffled_questions
+    @all_unmarked_options = selected_options
+    @shuffled_questions = shuffled_questions
 
-    @all_questions.map do |question|
+    @shuffled_questions.map do |question|
       {
         question:,
-        options: @all_options.select{ |option| question[:id] == option[:question_id]}
+        options: @all_unmarked_options.select{ |option| question[:id] == option[:question_id]}
       } if valid_question?(question)
     end.compact
   end
 
+  # TODO: Better way to do this? maybe using scope?
+  def selected_options
+    all_unmarked_options.joins('LEFT JOIN marked_options ON options.question_id = marked_options.question_id')
+                        .select('options.option_text, CASE WHEN options.id = marked_options.marked_option THEN 1 ELSE 0 END AS selected')
+  end
+
   def quiz_score
-    @marked_options = marked_options
     @correct_options = all_options.select{ |option| option[:correct] }
-    score = (@correct_options.pluck(:id) & @marked_options.pluck(:marked_option)).length
+    # score = (@correct_options.pluck(:id) & selected_options.pluck(:marked_option)).length
   end
 
   def questions_with_options

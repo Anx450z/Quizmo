@@ -20,7 +20,7 @@ class QuizController < ApplicationController
   end
 
   def preview
-    render json: { quiz: @quiz, questions: @quiz.test_questions}
+    render json: { quiz: @quiz, questions: @quiz.test_questions }
   end
 
   def update
