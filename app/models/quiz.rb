@@ -26,16 +26,20 @@ class Quiz < ApplicationRecord
     questions.joins(:options).select('questions.id, options.id, options.option_text, options.question_id')
   end
 
+  def valid_question?(question)
+    question[:correct_options] > 0 && question[:number_of_options] > 1
+  end
+
   def test_questions
     @all_options = all_unmarked_options
-    @all_questions = all_questions
+    @all_questions = shuffled_questions
 
     @all_questions.map do |question|
       {
         question:,
         options: @all_options.select{ |option| question[:id] == option[:question_id]}
-      }
-    end
+      } if valid_question?(question)
+    end.compact
   end
 
   def quiz_score

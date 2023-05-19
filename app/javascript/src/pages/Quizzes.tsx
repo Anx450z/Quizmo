@@ -65,6 +65,7 @@ const Quizzes = () => {
                         Delete
                       </button>
                       <button onClick={() => navigate(`/show_quiz/${id}`)}>view</button>
+                      <button onClick={() => navigate(`/preview_quiz/${id}`)}>Preview</button>
                     </div>
                   </div>
                   <div>

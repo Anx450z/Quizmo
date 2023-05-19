@@ -7,6 +7,7 @@ import CreateQuiz from './pages/CreateQuiz'
 import Quiz from './pages/Quiz'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import PreviewQuiz from './pages/PreviewQuiz'
 
 const App = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/new_quiz" element={<CreateQuiz />} />
           <Route path="/show_quiz/:id" element={<Quiz />} />
+          <Route path="/preview_quiz/:id" element={<PreviewQuiz />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
