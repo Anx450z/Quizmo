@@ -15,7 +15,8 @@ class Quiz < ApplicationRecord
 
   # TODO: Update with quiz_setting model
   def shuffled_questions
-    all_questions.shuffle
+    # all_questions.shuffle
+    all_questions
   end
 
   def all_options

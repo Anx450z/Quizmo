@@ -3,5 +3,5 @@ class MarkedOption < ApplicationRecord
   validates_presence_of :marked_option
 
   belongs_to :quiz
-  belongs_to :questions
+  belongs_to :question
 end

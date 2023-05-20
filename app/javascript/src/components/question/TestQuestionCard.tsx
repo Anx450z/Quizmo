@@ -1,8 +1,8 @@
 import React from 'react'
-import Option from './Option'
+import OptionPreview from '../../option/OptionPreview'
 import ReactQuill from 'react-quill'
 
-const QuestionCard = (props: any) => {
+const TestQuestionCard = (props: any) => {
   return (
     <li
       key={props.id}
@@ -20,9 +20,9 @@ const QuestionCard = (props: any) => {
       <div className="w-full">
         <ReactQuill readOnly value={props.question} theme="bubble" />
       </div>
-      <Option options={props.options} onMutate={props.onMutate} />
+      <OptionPreview options={props.options} mutate={props.mutate} quiz_id={props.quiz_id} question_id={props.id}/>
     </li>
   )
 }
 
-export default QuestionCard
+export default TestQuestionCard

@@ -1,6 +1,6 @@
 import React from 'react'
-import OptionControl from './OptionControl'
-import Option from './Option'
+import OptionControl from '../../option/OptionControl'
+import Option from '../../option/Option'
 import ReactQuill from 'react-quill'
 
 const QuestionCard = (props: any) => {

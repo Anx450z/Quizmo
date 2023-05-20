@@ -1,5 +1,5 @@
 import React from 'react'
-import optionApi, {OptionType} from '../../apis/option'
+import optionApi, {OptionType} from '../apis/option'
 import ReactQuill from 'react-quill'
 
 const Option = (props:any) => {

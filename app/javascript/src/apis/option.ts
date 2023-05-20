@@ -3,7 +3,8 @@ import axios from 'axios'
 export type OptionType = {
     id: string,
     option_text: string,
-    correct: boolean
+    correct: boolean,
+    selected: number | undefined,
 }
 
 type Option = {
@@ -12,9 +13,17 @@ type Option = {
   correct: boolean
 }
 
+type SelectedOption = {
+  select_option:{
+    question_id: string | number,
+    quiz_id: string | number,
+    marked_option: number | string
+  }
+}
+
 const createOption = (id: string, option: Option) => axios.post(`/question/${id}/option`, option)
 const deleteOption = (option_id: string) => axios.delete(`/option/${option_id}`)
-
-const optionApi = { createOption, deleteOption }
+const selectOption = (selectedOption: SelectedOption) => axios.post(`/marked_option`,selectedOption)
+const optionApi = { createOption, deleteOption, selectOption }
 
 export default optionApi

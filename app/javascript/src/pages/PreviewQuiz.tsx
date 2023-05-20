@@ -40,11 +40,14 @@ const PreviewQuiz = () => {
     const response = await quizApi.preview(id!)
     setTitle(response.data.quiz.title)
     setDescription(response.data.quiz.description)
-    console.log(response.data)
     return response.data
   }
 
-  const { data: quiz, isLoading, mutate } = useSwr<Quiz>([`quiz`, id], getQuiz)
+  const mutatePreview = () => mutate()
+
+  const { data: quiz, isLoading, mutate } = useSwr<Quiz>([`quiz`, id], getQuiz,{
+    revalidateOnFocus: false,
+  })
   return (
     <>
       {isLoading ? (
@@ -61,6 +64,8 @@ const PreviewQuiz = () => {
                 index={quiz?.questions.length - index - 1}
                 question={question.question}
                 options={options}
+                mutate={mutatePreview}
+                quiz_id={id}
               />
             ))}
           </ul>

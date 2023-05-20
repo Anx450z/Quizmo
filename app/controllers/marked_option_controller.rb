@@ -20,6 +20,6 @@ class MarkedOptionController < ApplicationController
   private
 
   def marked_option_params
-    params.require(:marked_option).permit(:quiz_id, :question_id, :marked_option)
+    params.require(:select_option).permit(:quiz_id, :question_id, :marked_option)
   end
 end

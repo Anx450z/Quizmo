@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import optionApi from '../../apis/option'
+import optionApi from '../apis/option'
 import ReactQuill from 'react-quill'
 
 const OptionControl = (props: any) => {
