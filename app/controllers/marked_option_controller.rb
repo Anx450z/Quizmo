@@ -1,6 +1,6 @@
 class MarkedOptionController < ApplicationController
   def create
-    @marked_option = MarkedOption.find_by(marked_option: marked_option_params[:marked_option])
+    @marked_option = MarkedOption.find_by(question_id: marked_option_params[:question_id])
     if @marked_option.nil?
       @marked_option = MarkedOption.new(marked_option_params.merge({user_id:current_user.id}))
       if @marked_option.save
