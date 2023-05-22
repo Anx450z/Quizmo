@@ -3,7 +3,7 @@ class Question < ApplicationRecord
 
   belongs_to :quiz, counter_cache: true
   has_many :options, dependent: :destroy
-  has_many :marked_options
+  has_many :marked_options, dependent: :destroy
 
   validates_presence_of :question, on: %i[create update], message: "can't be blank"
 

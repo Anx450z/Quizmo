@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_save :downcase_email
 
   has_many :quizzes, dependent: :destroy
+  has_many :marked_options, dependent: :destroy
 
   private
 

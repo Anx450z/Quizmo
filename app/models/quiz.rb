@@ -2,7 +2,7 @@ class Quiz < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   has_many :questions, dependent: :destroy
-  has_many :marked_options
+  has_many :marked_options, dependent: :destroy
   belongs_to :user
 
   validates_presence_of :title, on: %i[create update], message: 'title is required'
@@ -27,6 +27,11 @@ class Quiz < ApplicationRecord
     questions.joins(:options).select('questions.id, options.id, options.option_text, options.question_id')
   end
 
+  def question_attempted?(question)
+    question.marked_options.any?
+
+  end
+
   def valid_question?(question)
     question[:correct_options] > 0 && question[:number_of_options] > 1
   end
@@ -37,7 +42,8 @@ class Quiz < ApplicationRecord
     @shuffled_questions.map do |question|
       {
         question:,
-        options: @selected_options.select{ |option| question[:id] == option[:question_id]}
+        options: @selected_options.select{ |option| question[:id] == option[:question_id]},
+        question_attempted: question_attempted?(question)
       } if valid_question?(question)
     end.compact
   end
@@ -54,7 +60,7 @@ class Quiz < ApplicationRecord
   end
 
   def questions_with_options
-    @all_options = all_options # * instance variable helps to cache this value so same query does not executes multiple times
+    @all_options = all_options # ? instance variable helps to cache this value so same query does not executes multiple times
     @all_questions = all_questions
 
     @all_questions.map do |question|
