@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import quizApi from '../apis/quiz'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useSwr from 'swr'
 import Quill from '../components/common/Quill'
 import TestQuestionCard from '../components/question/TestQuestionCard'
@@ -35,6 +35,7 @@ const PreviewQuiz = () => {
   const [title, setTitle] = useState<string>()
   const [description, setDescription] = useState<string>()
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const getQuiz = async () => {
     const response = await quizApi.preview(id!)
@@ -69,6 +70,7 @@ const PreviewQuiz = () => {
               />
             ))}
           </ul>
+          <button className='absolute right-0' onClick={()=> navigate(`/quiz/show_score/${id}`)}>show score</button>
         </>
       )}
     </>

@@ -56,7 +56,8 @@ class Quiz < ApplicationRecord
 
   def quiz_score
     @correct_options = all_options.select{ |option| option[:correct] }
-    # score = (@correct_options.pluck(:id) & selected_options.pluck(:marked_option)).length
+    @selected_options = selected_options
+    score = (@correct_options.pluck(:id) & @selected_options.pluck(:marked_option)).length
   end
 
   def questions_with_options

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   post '/marked_option', to: 'marked_option#create'
   get '/quiz/:id/preview',  to: 'quiz#preview'
+  get 'quiz/:id/score', to: 'quiz#score'
 
   # below routes have to place at the bottom
   root to: 'home#index'

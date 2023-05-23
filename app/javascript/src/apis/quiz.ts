@@ -11,7 +11,8 @@ const destroy = (id: string) => axios.delete(`/quiz/${id}`)
 const show = (id: string) => axios.get(`/quiz/${id}`)
 const preview = (id: string) => axios.get(`/quiz/${id}/preview`)
 const update = (id: string, quiz:QuizType) => axios.patch(`/quiz/${id}`, quiz)
+const score = (id: string) => axios.get(`/quiz/${id}/score`)
 
-const quizApi = { list, create, destroy, update, show, preview }
+const quizApi = { list, create, destroy, update, show, preview, score }
 
 export default quizApi
