@@ -38,10 +38,12 @@ class Quiz < ApplicationRecord
   def test_questions
     @selected_options = selected_options.uniq
     @shuffled_questions = shuffled_questions
+    @attempted_questions = attempted_questions
     @shuffled_questions.map do |question|
       {
         question:,
         options: @selected_options.select{ |option| question[:id] == option[:question_id]},
+        question_attempted: !!@attempted_questions.include?(question[:id])
       } if valid_question?(question)
     end.compact
   end
