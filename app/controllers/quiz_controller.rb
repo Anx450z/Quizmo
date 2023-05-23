@@ -24,7 +24,12 @@ class QuizController < ApplicationController
   end
 
   def preview
-    render json: { quiz: @quiz, questions: @quiz.test_questions, test: @quiz.selected_options }
+    @attempted_questions = @quiz.attempted_questions
+    @test_questions = @quiz.test_questions
+    @test_questions.map do |question|
+      question.merge!({question_attempted: !!@attempted_questions.include?(question[:question].id)})
+    end
+    render json: { quiz: @quiz, questions: @quiz.test_questions, test: @test_questions }
   end
 
   def update

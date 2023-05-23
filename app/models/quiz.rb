@@ -27,9 +27,8 @@ class Quiz < ApplicationRecord
     questions.joins(:options).select('questions.id, options.id, options.option_text, options.question_id')
   end
 
-  def question_attempted?(question)
-    question.marked_options.any?
-
+  def attempted_questions
+    questions.joins(:marked_options).pluck(:question_id)
   end
 
   def valid_question?(question)
@@ -43,7 +42,6 @@ class Quiz < ApplicationRecord
       {
         question:,
         options: @selected_options.select{ |option| question[:id] == option[:question_id]},
-        question_attempted: question_attempted?(question)
       } if valid_question?(question)
     end.compact
   end
