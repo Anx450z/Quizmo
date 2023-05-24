@@ -20,6 +20,7 @@ type Question = {
 type Questions = {
   question: Question
   options: Option
+  question_attempted: boolean
 }
 
 type Quiz = {
@@ -46,7 +47,11 @@ const PreviewQuiz = () => {
 
   const mutatePreview = () => mutate()
 
-  const { data: quiz, isLoading, mutate } = useSwr<Quiz>([`quiz`, id], getQuiz,{
+  const {
+    data: quiz,
+    isLoading,
+    mutate,
+  } = useSwr<Quiz>([`quiz`, id], getQuiz, {
     revalidateOnFocus: false,
   })
   return (
@@ -55,22 +60,48 @@ const PreviewQuiz = () => {
         <> Loading...</>
       ) : (
         <>
-          <Quill value={title} />
-          <Quill value={description} />
-          <ul>
-            {quiz?.questions.map(({ question, options }: Questions, index: number) => (
-              <TestQuestionCard
-                id={question.id}
-                key={question.id}
-                index={quiz?.questions.length - index - 1}
-                question={question.question}
-                options={options}
-                mutate={mutatePreview}
-                quiz_id={id}
-              />
-            ))}
-          </ul>
-          <button className='absolute right-0' onClick={()=> navigate(`/quiz/show_score/${id}`)}>show score</button>
+          <div className="grid grid-cols-10">
+            <section className="col-span-7">
+              <ul>
+                {quiz?.questions.map(({ question, options }: Questions, index: number) => (
+                  <TestQuestionCard
+                    id={question.id}
+                    key={question.id}
+                    index={index}
+                    question={question.question}
+                    options={options}
+                    mutate={mutatePreview}
+                    quiz_id={id}
+                  />
+                ))}
+              </ul>
+            </section>
+            <section className="col-span-3 bg-white">
+              <div className="grid grid-rows-3">
+                <div className="row-span-1">
+                  <Quill value={title} />
+                  <Quill value={description} />
+                </div>
+                <ul className="row-span-1 grid grid-cols-4">
+                  {quiz?.questions.map(
+                    ({ question, question_attempted }: Questions, index: number) =>
+                      question_attempted ? (
+                        <li className="question-list" key={question.id}>
+                          {index + 1}
+                        </li>
+                      ) : (
+                        <li className="question-list bg-yellow-200" key={question.id}>
+                          {index + 1}
+                        </li>
+                      )
+                  )}
+                </ul>
+                <button className="row-span-1" onClick={() => navigate(`/quiz/show_score/${id}`)}>
+                  show score
+                </button>
+              </div>
+            </section>
+          </div>
         </>
       )}
     </>
