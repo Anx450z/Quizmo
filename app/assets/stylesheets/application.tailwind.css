@@ -53,7 +53,7 @@
   }
 
   .valid-question, .valid-quiz{
-    @apply bg-slate-100 p-1 my-2 rounded-2xl border-4
+    @apply bg-slate-100 p-1 m-2 rounded-2xl border-4
   }
 
  .main-question {
@@ -69,7 +69,11 @@
   }
 
  .question-list {
-  @apply col-span-1 bg-green-200 px-3 py-2 m-0.5 text-center rounded-full font-bold hover:bg-white cursor-pointer
+  @apply col-span-1 bg-green-200 px-3 py-3 m-1 text-center rounded-full font-bold hover:bg-white cursor-pointer
+ }
+
+ .pill-button {
+  @apply pill bg-black/5 text-center border cursor-pointer hover:border-blue-600 hover:bg-white text-black/70 hover:text-blue-600
  }
   
 }

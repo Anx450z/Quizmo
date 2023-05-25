@@ -37,6 +37,7 @@ const PreviewQuiz = () => {
   const [description, setDescription] = useState<string>()
   const { id } = useParams()
   const navigate = useNavigate()
+  const [quizIndex, setQuizIndex] = useState<number>(0)
 
   const getQuiz = async () => {
     const response = await quizApi.preview(id!)
@@ -62,7 +63,7 @@ const PreviewQuiz = () => {
         <>
           <div className="grid grid-cols-10">
             <section className="col-span-7">
-              <ul>
+              {/* <ul>
                 {quiz?.questions.map(({ question, options }: Questions, index: number) => (
                   <TestQuestionCard
                     id={question.id}
@@ -74,15 +75,26 @@ const PreviewQuiz = () => {
                     quiz_id={id}
                   />
                 ))}
-              </ul>
+              </ul> */}
+              <div>
+                <TestQuestionCard
+                  id={quiz!.questions[quizIndex].question.id}
+                  key={quiz!.questions[quizIndex].question.id}
+                  index={quizIndex}
+                  question={quiz!.questions[quizIndex].question.question}
+                  options={quiz!.questions[quizIndex].options}
+                  mutate={mutatePreview}
+                  quiz_id={id}
+                />
+              </div>
             </section>
             <section className="col-span-3 bg-white">
               <div className="grid grid-rows-3">
-                <div className="row-span-1">
+                <div>
                   <Quill value={title} />
                   <Quill value={description} />
                 </div>
-                <ul className="row-span-1 grid grid-cols-4">
+                <ul className="grid grid-cols-4">
                   {quiz?.questions.map(
                     ({ question, question_attempted }: Questions, index: number) =>
                       question_attempted ? (
@@ -96,9 +108,7 @@ const PreviewQuiz = () => {
                       )
                   )}
                 </ul>
-                <button className="row-span-1" onClick={() => navigate(`/quiz/show_score/${id}`)}>
-                  show score
-                </button>
+                <button onClick={() => navigate(`/quiz/show_score/${id}`)}>show score</button>
               </div>
             </section>
           </div>

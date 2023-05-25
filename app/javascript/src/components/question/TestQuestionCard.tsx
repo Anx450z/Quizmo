@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill'
 
 const TestQuestionCard = (props: any) => {
   return (
-    <li
+    <div
       key={props.id}
       id={'question' + props.id}
       className='valid-question'>
@@ -16,12 +16,20 @@ const TestQuestionCard = (props: any) => {
           </div>
           <label>Question</label>
         </div>
+          <div className='flex items-center justify-center align-middle'>
+            <label className='pill-button'>next</label>
+            <label className='pill-button'>previous</label>
+          </div>
       </div>
       <div className="w-full">
         <ReactQuill readOnly value={props.question} theme="bubble" />
       </div>
       <OptionPreview options={props.options} mutate={props.mutate} quiz_id={props.quiz_id} question_id={props.id}/>
-    </li>
+      <div className="flex items-center justify-between align-middle">
+        <label className='pill-button'>clear</label>
+        <label className='pill-button'>mark for review</label>
+      </div>
+    </div>
   )
 }
 
