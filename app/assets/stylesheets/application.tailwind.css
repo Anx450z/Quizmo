@@ -69,7 +69,7 @@
   }
 
  .question-list {
-  @apply col-span-1 bg-green-200 px-3 py-3 m-1 text-center rounded-full font-bold hover:bg-white cursor-pointer
+  @apply col-span-1 bg-green-200 px-3 py-3 m-1 border-4 border-transparent text-center rounded-full font-bold hover:bg-blue-200 cursor-pointer
  }
 
  .pill-button {

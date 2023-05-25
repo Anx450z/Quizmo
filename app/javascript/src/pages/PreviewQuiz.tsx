@@ -63,28 +63,17 @@ const PreviewQuiz = () => {
         <>
           <div className="grid grid-cols-10">
             <section className="col-span-7">
-              {/* <ul>
-                {quiz?.questions.map(({ question, options }: Questions, index: number) => (
-                  <TestQuestionCard
-                    id={question.id}
-                    key={question.id}
-                    index={index}
-                    question={question.question}
-                    options={options}
-                    mutate={mutatePreview}
-                    quiz_id={id}
-                  />
-                ))}
-              </ul> */}
               <div>
                 <TestQuestionCard
                   id={quiz!.questions[quizIndex].question.id}
-                  key={quiz!.questions[quizIndex].question.id}
                   index={quizIndex}
                   question={quiz!.questions[quizIndex].question.question}
                   options={quiz!.questions[quizIndex].options}
                   mutate={mutatePreview}
                   quiz_id={id}
+                  setQuizIndex={setQuizIndex}
+                  quizIndex={quizIndex}
+                  totalQuestions={quiz?.questions.length}
                 />
               </div>
             </section>
@@ -98,11 +87,11 @@ const PreviewQuiz = () => {
                   {quiz?.questions.map(
                     ({ question, question_attempted }: Questions, index: number) =>
                       question_attempted ? (
-                        <li className="question-list" key={question.id}>
+                        <li className={index === quizIndex ?`question-list border-blue-500 bg-blue-200`:`question-list`} key={question.id} onClick={() => setQuizIndex(index)}>
                           {index + 1}
                         </li>
                       ) : (
-                        <li className="question-list bg-yellow-200" key={question.id}>
+                        <li className={index === quizIndex ?`question-list border-blue-500 bg-yellow-200`:`question-list bg-yellow-200`} key={question.id} onClick={() => setQuizIndex(index)}>
                           {index + 1}
                         </li>
                       )
