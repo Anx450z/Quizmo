@@ -15,6 +15,10 @@ class MarkedOptionController < ApplicationController
   end
 
   def destroy
+    question = Question.find(params[:question_id])
+    question.marked_options.each do |option|
+      option.destroy
+    end
   end
 
   private

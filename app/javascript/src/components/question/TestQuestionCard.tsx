@@ -1,6 +1,7 @@
 import React from 'react'
 import OptionPreview from '../../option/OptionPreview'
 import ReactQuill from 'react-quill'
+import optionApi from '../../apis/option'
 
 const TestQuestionCard = (props: any) => {
   const handelNextQuestion = () => {
@@ -16,6 +17,11 @@ const TestQuestionCard = (props: any) => {
     } else {
       props.setQuizIndex(props.totalQuestions - 1)
     }
+  }
+
+  const handleClearOptions = async (question_id: string) => {
+    await optionApi.clearOption(question_id)
+    props.mutate()
   }
 
   return (
@@ -44,7 +50,7 @@ const TestQuestionCard = (props: any) => {
         question_id={props.id}
       />
       <div className="flex items-center justify-between align-middle">
-        <label className="pill-button">clear</label>
+        <label className="pill-button" onClick={()=> handleClearOptions(props.id)}>clear</label>
         <label className="pill-button">mark for review</label>
       </div>
     </div>

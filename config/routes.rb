@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   post '/marked_option', to: 'marked_option#create'
+  delete '/marked_option/delete/:question_id', to: 'marked_option#destroy'
   get '/quiz/:id/preview',  to: 'quiz#preview'
   get 'quiz/:id/score', to: 'quiz#score'
 
