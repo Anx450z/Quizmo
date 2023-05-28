@@ -61,7 +61,7 @@ const PreviewQuiz = () => {
         <> Loading...</>
       ) : (
         <>
-          <div className="grid grid-cols-10">
+          <div className="grid grid-cols-10 h-screen">
             <section className="col-span-7">
               <div>
                 <TestQuestionCard
@@ -77,8 +77,8 @@ const PreviewQuiz = () => {
                 />
               </div>
             </section>
-            <section className="col-span-3 bg-white">
-              <div className="grid grid-rows-3">
+            <section className="col-span-3 bg-white flex-col items-center content-center">
+              <div className="grid grid-rows-3 h-screen">
                 <div>
                   <Quill value={title} />
                   <Quill value={description} />
