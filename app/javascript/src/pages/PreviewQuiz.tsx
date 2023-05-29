@@ -32,12 +32,18 @@ type Quiz = {
   questions: Questions[]
 }
 
+type MarkedQuestions= {
+  question_id: string | number,
+  marked: boolean
+}
+
 const PreviewQuiz = () => {
   const [title, setTitle] = useState<string>()
   const [description, setDescription] = useState<string>()
   const { id } = useParams()
   const navigate = useNavigate()
   const [quizIndex, setQuizIndex] = useState<number>(0)
+  const [markedQuestions, setMarkedQuestions] = useState<MarkedQuestions[]>()
 
   const getQuiz = async () => {
     const response = await quizApi.preview(id!)
@@ -74,6 +80,8 @@ const PreviewQuiz = () => {
                   setQuizIndex={setQuizIndex}
                   quizIndex={quizIndex}
                   totalQuestions={quiz?.questions.length}
+                  markedQuestions={markedQuestions}
+                  setMarkedQuestions={setMarkedQuestions}
                 />
               </div>
             </section>

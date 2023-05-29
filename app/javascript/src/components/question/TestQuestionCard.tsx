@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import OptionPreview from '../../option/OptionPreview'
 import ReactQuill from 'react-quill'
 import optionApi from '../../apis/option'
@@ -19,24 +19,36 @@ const TestQuestionCard = (props: any) => {
     }
   }
 
-  const handleClearOptions = async (question_id: string) => {
-    await optionApi.clearOption(question_id)
+  const handleClearOptions = async () => {
+    await optionApi.clearOption(props.id)
     props.mutate()
+  }
+
+  const handleMarkQuestion = () => {
+    const markedQuestion = {
+      question_id: props.id,
+      marked: false
+    }
+    props.setMarkedQuestions(
+      markedQuestion
+    )
+
+    console.log(props.markedQuestions, props.id)
   }
 
   return (
     <div key={props.id} id={'question' + props.id} className="valid-question">
       <div className="flex items-center justify-between align-middle">
         <div className="flex items-center justify-center align-middle">
-          <div className="pill bg-slate-200 text-slate-500 px-3">{props.index + 1}</div>
+          <div className="pill bg-slate-200 px-3 text-slate-500">{props.index + 1}</div>
           <label>Question</label>
         </div>
         <div className="flex items-center justify-center align-middle">
           <label className="pill-button" onClick={handelNextQuestion}>
-            next
+            &lt;
           </label>
           <label className="pill-button" onClick={handelPreviousQuestion}>
-            previous
+            &gt;
           </label>
         </div>
       </div>
@@ -50,8 +62,12 @@ const TestQuestionCard = (props: any) => {
         question_id={props.id}
       />
       <div className="flex items-center justify-between align-middle">
-        <label className="pill-button" onClick={()=> handleClearOptions(props.id)}>clear</label>
-        <label className="pill-button">mark for review</label>
+        <label className="pill-button" onClick={handleClearOptions}>
+          clear
+        </label>
+        <label className="pill-button" onClick={handleMarkQuestion}>
+         mark
+        </label>
       </div>
     </div>
   )
