@@ -61,7 +61,7 @@ const Quiz = () => {
           />
           <button onClick={() => navigate('/')}>All Quizzes</button>
          
-          <ul className="container">
+          <ul>
             {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
               <QuestionCard
                 id={question.id}

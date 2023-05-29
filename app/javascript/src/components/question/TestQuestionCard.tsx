@@ -37,7 +37,7 @@ const TestQuestionCard = (props: any) => {
   }
 
   return (
-    <div key={props.id} id={'question' + props.id} className="valid-question">
+    <div key={props.id} id={'question' + props.id} className="valid-question w-full">
       <div className="flex items-center justify-between align-middle">
         <div className="flex items-center justify-center align-middle">
           <div className="pill bg-slate-200 px-3 text-slate-500">{props.index + 1}</div>
