@@ -4,6 +4,7 @@ class Quiz < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :marked_options, dependent: :destroy
   belongs_to :user
+  has_one :quiz_setting
 
   validates_presence_of :title, on: %i[create update], message: 'title is required'
 
