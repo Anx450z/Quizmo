@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/quiz/:quiz_id/setting', to: 'quiz_setting#show'
+  post '/quiz/:quiz_id/setting', to: 'quiz_setting#create'
+  put '/quiz/:quiz_id/setting', to: 'quiz_setting#update'
+
   resources :quiz do
     resources :question, only: %i[create update destroy]
   end

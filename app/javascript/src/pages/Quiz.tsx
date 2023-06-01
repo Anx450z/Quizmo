@@ -7,6 +7,7 @@ import questionApi, { QuestionType } from '../apis/questions'
 import CreateQuestion from '../components/question/CreateQuestion'
 import QuestionCard from '../components/question/QuestionCard'
 import FilterQuestions from '../components/question/FilterQuestions'
+import QuizSetting from '../components/common/QuizSetting'
 
 const Quiz = () => {
   const navigate = useNavigate()
@@ -59,6 +60,7 @@ const Quiz = () => {
             description={description}
             setDescription={setDescription}
           />
+          <QuizSetting quizId={id!}/>
           <button onClick={() => navigate('/')}>All Quizzes</button>
          
           <ul>

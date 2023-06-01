@@ -4,9 +4,7 @@ class QuestionController < ApplicationController
 
   def create
     question = @quiz.questions.new(question_params)
-    if question.save
-      render json: { message: 'question created' }
-    else
+    unless question.save
       render json: { error: 'error creating new question' }
     end
   end
