@@ -1,6 +1,6 @@
 class QuizSettingController < ApplicationController
 
-  before_action :set_quiz_setting , only: %i[show update destroy]
+  before_action :set_quiz_setting , only: %i[show destroy]
   
   def create
     @quiz_setting = QuizSetting.new(quiz_id: quiz_setting_params[:quiz_id])
@@ -14,7 +14,8 @@ class QuizSettingController < ApplicationController
   end
 
   def update
-    @quiz_setting.update!(quiz_setting_params)
+    @quiz_setting = Quiz.find(quiz_setting_update_params[:quiz_id]).quiz_setting
+    @quiz_setting.update!(quiz_setting_update_params)
   end
 
   def destroy
@@ -32,5 +33,9 @@ class QuizSettingController < ApplicationController
   
   def quiz_setting_params
     params.permit(:correct_mark, :negative_marking, :negative_mark, :start_time, :end_time, :duration, :quiz_id)
+  end
+
+  def quiz_setting_update_params
+    params.require(:quiz_setting).permit(:correct_mark, :negative_marking, :negative_mark, :start_time, :end_time, :duration, :quiz_id)
   end
 end
