@@ -16,7 +16,7 @@ class QuizController < ApplicationController
   end
 
   def show
-    render json: { quiz: @quiz, questions: @quiz.questions_with_options }
+    render json: { quiz: @quiz, questions: @quiz.questions_with_options}
   end
 
   def score
@@ -24,7 +24,7 @@ class QuizController < ApplicationController
   end
 
   def preview
-    render json: { quiz: @quiz, questions: @quiz.test_questions }
+    render json: { quiz: @quiz, questions: @quiz.test_questions, quiz_setting: @quiz.quiz_setting}
   end
 
   def update

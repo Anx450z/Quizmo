@@ -29,7 +29,15 @@ type Quiz = {
     title: string
     description: string
   }
-  questions: Questions[]
+  questions: Questions[],
+  quiz_setting: {
+    correct_mark: number | string
+    duration: number | string
+    negative_mark: number | string
+    negative_marking: number | string
+    start_time: number | string
+    end_time: number | string
+  }
 }
 
 type MarkedQuestions = {
@@ -50,6 +58,7 @@ const PreviewQuiz = () => {
     const response = await quizApi.preview(id!)
     setTitle(response.data.quiz.title)
     setDescription(response.data.quiz.description)
+    setTimer(response.data.quiz_setting.duration)
     return response.data
   }
 
@@ -141,7 +150,7 @@ const PreviewQuiz = () => {
                   )}
                 </ul>
                 <button onClick={() => navigate(`/quiz/show_score/${id}`)}>submit</button>
-                <button>all quizzes</button>
+                <button onClick={()=>navigate('/')}>all quizzes</button>
               </div>
             </section>
           </div>
