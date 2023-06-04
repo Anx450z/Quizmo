@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill'
 import optionApi from '../../apis/option'
 
 const TestQuestionCard = (props: any) => {
+  const [mark, setMark] = useState(false)
   const handelNextQuestion = () => {
     if (props.quizIndex < props.totalQuestions - 1) {
       props.setQuizIndex(props.quizIndex + 1)
@@ -27,13 +28,14 @@ const TestQuestionCard = (props: any) => {
   const handleMarkQuestion = () => {
     const markedQuestion = {
       question_id: props.id,
-      marked: false
+      marked: !mark
     }
+    setMark(!mark)
     props.setMarkedQuestions(
-      markedQuestion
+      (prevMarkedQuestions: any) => [...prevMarkedQuestions, markedQuestion]
     )
 
-    console.log(props.markedQuestions, props.id)
+    console.log(props.markedQuestions)
   }
 
   return (

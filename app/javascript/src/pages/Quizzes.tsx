@@ -2,6 +2,7 @@ import React from 'react'
 import quizApi from '../apis/quiz'
 import useSwr from 'swr'
 import { useNavigate } from 'react-router-dom'
+import Quill from '../components/common/Quill'
 
 const Quizzes = () => {
   type Quiz = {
@@ -41,13 +42,13 @@ const Quizzes = () => {
         <>
           <div className="bg-slate-300">Hello</div>
           <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
-          <div className='grid content-center place-items-center min-h-screen'>
-            <ul>
+          <div className="grid min-h-screen place-items-center content-center">
+            <ul className='w-full'>
               {quizList?.map(({ id, title, description, questions_count }: Quiz) => (
                 <li key={id} id={id.toString()} className="valid-quiz">
                   <div className="item-start flex justify-between font-semibold">
                     <div>
-                      {title}
+                      <Quill value={title} />
                       {questions_count! ? (
                         <>
                           <label className="pill bg-green-100 text-green-700">
@@ -69,7 +70,7 @@ const Quizzes = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-sm text-slate-600">{description}</h3>
+                    <Quill value={description} />
                   </div>
                 </li>
               ))}

@@ -51,7 +51,7 @@ const PreviewQuiz = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [quizIndex, setQuizIndex] = useState<number>(0)
-  const [markedQuestions, setMarkedQuestions] = useState<MarkedQuestions[]>()
+  const [markedQuestions, setMarkedQuestions] = useState<MarkedQuestions[]>([])
   const [timer, setTimer] = useState(66)
 
   const getQuiz = async () => {
