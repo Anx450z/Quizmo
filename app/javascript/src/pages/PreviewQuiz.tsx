@@ -40,18 +40,13 @@ type Quiz = {
   }
 }
 
-type MarkedQuestions = {
-  question_id: string | number
-  marked: boolean
-}
-
 const PreviewQuiz = () => {
   const [title, setTitle] = useState<string>()
   const [description, setDescription] = useState<string>()
   const { id } = useParams()
   const navigate = useNavigate()
   const [quizIndex, setQuizIndex] = useState<number>(0)
-  const [markedQuestions, setMarkedQuestions] = useState<MarkedQuestions[]>([])
+  const [markedQuestions, setMarkedQuestions] = useState<number[]>([0])
   const [timer, setTimer] = useState(66)
 
   const getQuiz = async () => {
@@ -134,6 +129,7 @@ const PreviewQuiz = () => {
                           key={question.id}
                           onClick={() => setQuizIndex(index)}>
                           {index + 1}
+                          {/* {markedQuestions.includes(question.id as number)?'*':''} */}
                         </li>
                       ) : (
                         <li
@@ -144,13 +140,14 @@ const PreviewQuiz = () => {
                           }
                           key={question.id}
                           onClick={() => setQuizIndex(index)}>
-                          {index + 1}
+                          {index + 1}{markedQuestions}
                         </li>
                       )
                   )}
                 </ul>
                 <button onClick={() => navigate(`/quiz/show_score/${id}`)}>submit</button>
                 <button onClick={()=>navigate('/')}>all quizzes</button>
+                <button onClick={()=>console.log(markedQuestions, typeof(markedQuestions))}>see marked questions</button>
               </div>
             </section>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OptionPreview from '../../option/OptionPreview'
 import ReactQuill from 'react-quill'
 import optionApi from '../../apis/option'
@@ -26,17 +26,23 @@ const TestQuestionCard = (props: any) => {
   }
 
   const handleMarkQuestion = () => {
-    const markedQuestion = {
-      question_id: props.id,
-      marked: !mark
-    }
+
+    let allMarkedQuestions = props.markedQuestions
+
+
+    allMarkedQuestions.forEach((question : number) => {
+      if(mark && question === props.id){
+        allMarkedQuestions.delete(question)
+      }
+      // console.log(question, allMarkedQuestions)
+    });
+
     setMark(!mark)
     props.setMarkedQuestions(
-      (prevMarkedQuestions: any) => [...prevMarkedQuestions, markedQuestion]
+      (prevMarkedQuestions: any) => new Set([...prevMarkedQuestions, props.id])
     )
-
-    console.log(props.markedQuestions)
   }
+
 
   return (
     <div key={props.id} id={'question' + props.id} className="valid-question w-full">
