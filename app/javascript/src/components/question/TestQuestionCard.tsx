@@ -26,21 +26,18 @@ const TestQuestionCard = (props: any) => {
   }
 
   const handleMarkQuestion = () => {
-
+    setMark(!mark)
     let allMarkedQuestions = props.markedQuestions
 
-
-    allMarkedQuestions.forEach((question : number) => {
-      if(mark && question === props.id){
-        allMarkedQuestions.delete(question)
+      if(mark && allMarkedQuestions.has(props.id)){
+        allMarkedQuestions.delete(props.id)
+        props.setMarkedQuestions(allMarkedQuestions)
+      }else{
+        props.setMarkedQuestions(
+          (prevMarkedQuestions: any) => new Set([...prevMarkedQuestions, props.id])
+        )
       }
-      // console.log(question, allMarkedQuestions)
-    });
-
-    setMark(!mark)
-    props.setMarkedQuestions(
-      (prevMarkedQuestions: any) => new Set([...prevMarkedQuestions, props.id])
-    )
+    
   }
 
 
@@ -74,7 +71,7 @@ const TestQuestionCard = (props: any) => {
           clear
         </label>
         <label className="pill-button" onClick={handleMarkQuestion}>
-         mark
+         {props.markedQuestions.has(props.id) ? 'unmark' : 'mark for review'}
         </label>
       </div>
     </div>

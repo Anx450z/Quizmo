@@ -46,7 +46,7 @@ const PreviewQuiz = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [quizIndex, setQuizIndex] = useState<number>(0)
-  const [markedQuestions, setMarkedQuestions] = useState<number[]>([0])
+  const [markedQuestions, setMarkedQuestions] = useState<Set<number>>(new Set([0]))
   const [timer, setTimer] = useState(66)
 
   const getQuiz = async () => {
@@ -128,8 +128,10 @@ const PreviewQuiz = () => {
                           }
                           key={question.id}
                           onClick={() => setQuizIndex(index)}>
-                          {index + 1}
-                          {/* {markedQuestions.includes(question.id as number)?'*':''} */}
+                            <b>
+                            {index + 1}
+                            {markedQuestions.has(question.id as number)?'*':''}
+                            </b>
                         </li>
                       ) : (
                         <li
@@ -140,7 +142,7 @@ const PreviewQuiz = () => {
                           }
                           key={question.id}
                           onClick={() => setQuizIndex(index)}>
-                          {index + 1}{markedQuestions}
+                          {index + 1}{markedQuestions.has(question.id as number)?'*':''}
                         </li>
                       )
                   )}
