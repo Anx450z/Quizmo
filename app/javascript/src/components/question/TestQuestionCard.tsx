@@ -37,7 +37,6 @@ const TestQuestionCard = (props: any) => {
           (prevMarkedQuestions: any) => new Set([...prevMarkedQuestions, props.id])
         )
       }
-    
   }
 
 

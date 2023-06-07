@@ -29,7 +29,7 @@ type Quiz = {
     title: string
     description: string
   }
-  questions: Questions[],
+  questions: Questions[]
   quiz_setting: {
     correct_mark: number | string
     duration: number | string
@@ -90,7 +90,7 @@ const PreviewQuiz = () => {
       ) : (
         <>
           <div className="sm:grid-rows-10 grid h-screen grid-cols-10">
-            <section className="col-span-7 sm:row-span-6 mx-4">
+            <section className="col-span-7 mx-4 sm:row-span-6">
               <div className="grid min-h-screen place-items-center content-center">
                 <TestQuestionCard
                   id={quiz!.questions[quizIndex].question.id}
@@ -112,8 +112,11 @@ const PreviewQuiz = () => {
                 <div>
                   <Quill value={title} />
                   <Quill value={description} />
-                  <label className={timer<60?'text-red-600':''}>
-                    Time remaining: <b>{Math.floor(timer/60)}:{timer%60}</b>
+                  <label className={timer < 60 ? 'text-red-600' : ''}>
+                    Time remaining:{' '}
+                    <b>
+                      {Math.floor(timer / 60)}:{timer % 60}
+                    </b>
                   </label>
                 </div>
                 <ul className="grid grid-cols-4">
@@ -128,10 +131,8 @@ const PreviewQuiz = () => {
                           }
                           key={question.id}
                           onClick={() => setQuizIndex(index)}>
-                            <b>
-                            {index + 1}
-                            {markedQuestions.has(question.id as number)?'*':''}
-                            </b>
+                          {index + 1}
+                          {markedQuestions.has(question.id as number) ? '*' : ''}
                         </li>
                       ) : (
                         <li
@@ -142,14 +143,19 @@ const PreviewQuiz = () => {
                           }
                           key={question.id}
                           onClick={() => setQuizIndex(index)}>
-                          {index + 1}{markedQuestions.has(question.id as number)?'*':''}
+                          <b>
+                            {index + 1}
+                            {markedQuestions.has(question.id as number) ? '*' : ''}
+                          </b>
                         </li>
                       )
                   )}
                 </ul>
                 <button onClick={() => navigate(`/quiz/show_score/${id}`)}>submit</button>
-                <button onClick={()=>navigate('/')}>all quizzes</button>
-                <button onClick={()=>console.log(markedQuestions, typeof(markedQuestions))}>see marked questions</button>
+                <button onClick={() => navigate('/')}>all quizzes</button>
+                <button onClick={() => console.log(markedQuestions, typeof markedQuestions)}>
+                  see marked questions
+                </button>
               </div>
             </section>
           </div>
