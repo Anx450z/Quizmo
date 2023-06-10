@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuizController < ApplicationController
   before_action :set_quiz, only: %i[show update destroy preview score]
 
@@ -16,15 +18,15 @@ class QuizController < ApplicationController
   end
 
   def show
-    render json: { quiz: @quiz, questions: @quiz.questions_with_options}
+    render json: { quiz: @quiz, questions: @quiz.questions_with_options }
   end
 
   def score
-    render json: {score: @quiz.quiz_score}
+    render json: { score: @quiz.quiz_score }
   end
 
   def preview
-    render json: { quiz: @quiz, questions: @quiz.test_questions, quiz_setting: @quiz.quiz_setting}
+    render json: { quiz: @quiz, questions: @quiz.test_questions, quiz_setting: @quiz.quiz_setting }
   end
 
   def update

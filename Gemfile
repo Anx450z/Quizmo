@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -68,8 +70,8 @@ end
 
 gem 'pg', '~> 1.5'
 
-gem "bcrypt", "~> 3.1"
+gem 'bcrypt', '~> 3.1'
 
-gem "rack-cors", "~> 2.0"
+gem 'rack-cors', '~> 2.0'
 
-gem "jwt", "~> 2.7"
+gem 'jwt', '~> 2.7'

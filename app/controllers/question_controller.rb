@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class QuestionController < ApplicationController
   before_action :set_quiz, only: %i[create update destroy]
   before_action :set_question, only: %i[update destroy]
 
   def create
     question = @quiz.questions.new(question_params)
-    unless question.save
-      render json: { error: 'error creating new question' }
-    end
+    return if question.save
+
+    render json: { error: 'error creating new question' }
   end
 
   def update

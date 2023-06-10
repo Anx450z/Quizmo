@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Quiz < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
@@ -33,7 +35,7 @@ class Quiz < ApplicationRecord
   end
 
   def valid_question?(question)
-    question[:correct_options] > 0 && question[:number_of_options] > 1
+    (question[:correct_options]).positive? && question[:number_of_options] > 1
   end
 
   def test_questions
@@ -41,11 +43,13 @@ class Quiz < ApplicationRecord
     @shuffled_questions = shuffled_questions
     @attempted_questions = attempted_questions
     @shuffled_questions.map do |question|
+      next unless valid_question?(question)
+
       {
         question:,
-        options: @selected_options.select{ |option| question[:id] == option[:question_id]},
-        question_attempted: !!@attempted_questions.include?(question[:id])
-      } if valid_question?(question)
+        options: @selected_options.select { |option| question[:id] == option[:question_id] },
+        question_attempted: !@attempted_questions.include?(question[:id]).nil?
+      }
     end.compact
   end
 
@@ -56,9 +60,9 @@ class Quiz < ApplicationRecord
   end
 
   def quiz_score
-    @correct_options = all_options.select{ |option| option[:correct] }
+    @correct_options = all_options.select { |option| option[:correct] }
     @selected_options = selected_options
-    score = (@correct_options.pluck(:id) & @selected_options.pluck(:marked_option)).length
+    (@correct_options.pluck(:id) & @selected_options.pluck(:marked_option)).length
   end
 
   def questions_with_options

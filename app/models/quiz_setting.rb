@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuizSetting < ApplicationRecord
- belongs_to :quiz, dependent: :destroy
+  belongs_to :quiz, dependent: :destroy
 end
