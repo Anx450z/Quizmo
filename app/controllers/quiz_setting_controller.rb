@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class QuizSettingController < ApplicationController
   before_action :set_quiz_setting, only: %i[show destroy]
 

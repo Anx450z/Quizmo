@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class QuizController < ApplicationController
   before_action :set_quiz, only: %i[show update destroy preview score]
 

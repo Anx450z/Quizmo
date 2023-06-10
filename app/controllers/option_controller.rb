@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class OptionController < ApplicationController
   before_action :set_option, only: %i[update destroy]
   before_action :set_question, only: [:create]
