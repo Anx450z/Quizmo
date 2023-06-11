@@ -1,5 +1,6 @@
 class TokenController < ApplicationController
   require 'json_web_token'
+  require 'unique_code'
   before_action :set_counter
 
   def generate_tokens
@@ -8,12 +9,20 @@ class TokenController < ApplicationController
 
       @all_tokens << JsonWebToken.encode({quiz_id: token_create_params[:id]})
     end
-    render json: {tokens: @all_tokens}
+    render json: {tokens: @all_tokens, unique_code: generate_code}
   end
 
   def get_quiz
     @quiz_id = JsonWebToken.decode(token_prams[:token])[:id]
     render json: {quiz_id: @quiz_id}
+  end
+
+  def generate_code
+    @generated_codes = []
+    @counter.times do 
+      @generated_codes << UniqueCode.new.generate
+    end
+    @generated_codes
   end
 
   private

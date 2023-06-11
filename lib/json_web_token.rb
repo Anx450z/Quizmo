@@ -3,7 +3,7 @@ class JsonWebToken
 
   def self.encode(payload)
     payload[:random_number] = Time.now.to_i + rand(1000)
-    JWT.encode(payload, SECRET_KEY)    
+    JWT.encode(payload, SECRET_KEY)
   end
 
   def self.decode(token)
