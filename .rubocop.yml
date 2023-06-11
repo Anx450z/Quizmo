@@ -2,4 +2,4 @@ Style/Documentation:
   Enabled: false
 
 Layout/LineLength:
-  Max: 99
+  Enabled: false
