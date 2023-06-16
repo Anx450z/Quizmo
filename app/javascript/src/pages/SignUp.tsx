@@ -8,7 +8,9 @@ const SignUp = () => {
         username: (document.getElementById('username') as HTMLInputElement).value as string,
         email: (document.getElementById('email') as HTMLInputElement).value as string,
         password: (document.getElementById('password') as HTMLInputElement).value as string,
-        password_confirmation: (document.getElementById('password-confirmation') as HTMLInputElement).value as string
+        password_confirmation: (
+          document.getElementById('password-confirmation') as HTMLInputElement
+        ).value as string,
       },
     }
 
@@ -16,7 +18,12 @@ const SignUp = () => {
   }
 
   return (
-    <form className="flex-col border" onSubmit={handleSignUp}>
+    <form
+      className="grid min-h-screen place-items-center content-center border"
+      onSubmit={handleSignUp}>
+      <h1 className="py-10 text-center text-6xl font-extrabold text-indigo-600 shadow-black drop-shadow-sm">
+        Quizmo
+      </h1>
       <label>username</label>
       <input placeholder="username" id="username"></input>
       <label>email</label>

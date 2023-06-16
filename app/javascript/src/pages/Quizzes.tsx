@@ -40,12 +40,16 @@ const Quizzes = () => {
         <h2>Loading your quizzes...</h2>
       ) : (
         <>
-          <div className="bg-slate-300">Hello</div>
+          <div className="">
+            <h1 className="text-left text-2xl font-extrabold text-indigo-600 shadow-black drop-shadow-sm">
+              Quizmo
+            </h1>
+          </div>
           <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
-          <div className="grid min-h-screen place-items-center content-center">
-            <ul className='w-full'>
+          <div className="grid min-h-screen place-items-center content-center bg-slate-50">
+            <ul className="grid w-full place-items-center content-center">
               {quizList?.map(({ id, title, description, questions_count }: Quiz) => (
-                <li key={id} id={id.toString()} className="valid-quiz">
+                <li key={id} id={id.toString()} className="quiz-card">
                   <div className="item-start flex justify-between font-semibold">
                     <div>
                       <Quill value={title} />

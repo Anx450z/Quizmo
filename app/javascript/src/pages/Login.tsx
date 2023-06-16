@@ -18,7 +18,10 @@ const Login = (props:any) => {
   
   }
   return (
-    <div className='border flex-col'>
+    <div className='grid min-h-screen place-items-center content-center border'>
+      <h1 className='text-center font-extrabold text-6xl py-10 text-indigo-600 drop-shadow-sm shadow-black'>
+        Quizmo
+      </h1>
       <label>username</label>
       <input placeholder='username' id='username'></input>
       <label>password</label>
