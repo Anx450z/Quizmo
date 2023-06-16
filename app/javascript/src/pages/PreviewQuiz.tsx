@@ -54,7 +54,6 @@ const PreviewQuiz = () => {
     setTitle(response.data.quiz.title)
     setDescription(response.data.quiz.description)
     setTimer(response.data.quiz_setting.duration)
-    console.log(response.data)
     return response.data
   }
 

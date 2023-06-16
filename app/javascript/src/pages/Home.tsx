@@ -35,9 +35,20 @@ const Home = () => {
         <>
           {current_user?.is_logged_in ? (
             <>
-              <label>{current_user.user?.username}</label>
-              <button onClick={() => navigate('/new_quiz')}>Create new quiz</button>
-              <button onClick={logout}>Logout</button>
+            <div className='flex items-start justify-between'>
+              <div className="">
+                <h1 className="text-left text-2xl font-extrabold text-indigo-600 shadow-black drop-shadow-sm">
+                  Quizmo
+                </h1>
+              </div>
+              <div>
+                <label className='font-bold mx-2'>@{current_user.user?.username}</label>
+                <div onClick={() => navigate('/new_quiz')} className="create-quiz-button">
+                  + New Quiz
+                </div>
+                <label className='text-red-500 text-sm font-bold cursor-pointer' onClick={logout}>Logout</label>
+              </div>
+            </div>
               <Quizzes />
             </>
           ) : (
