@@ -48,7 +48,7 @@ class Quiz < ApplicationRecord
       {
         question:,
         options: @selected_options.select { |option| question[:id] == option[:question_id] },
-        question_attempted: !@attempted_questions.include?(question[:id]).nil?
+        question_attempted: @attempted_questions.include?(question[:id])
       }
     end.compact
   end
