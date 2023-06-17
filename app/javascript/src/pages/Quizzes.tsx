@@ -10,11 +10,13 @@ const Quizzes = () => {
     title: string
     description: string
     questions_count: number | string
+    attempts: number
   }
   const navigate = useNavigate()
 
   const getQuiz = async () => {
     const response = await quizApi.list()
+    console.log(response.data)
     return response.data.quizzes
   }
 
@@ -43,17 +45,20 @@ const Quizzes = () => {
           <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
           <div className="grid min-h-screen place-items-center content-center bg-slate-50">
             <ul className="grid grid-cols-3">
-              {quizList?.map(({ id, title, description, questions_count }: Quiz) => (
+              {quizList?.map(({ id, title, description, questions_count, attempts }: Quiz) => (
                 <li key={id} id={id.toString()} className="quiz-card">
                   <div className="item-start flex justify-between font-semibold">
                     <div>
                       <Quill value={title} />
                       {questions_count! ? (
-                        <>
+                        <div className='flex items-start justify-between'>
                           <label className="pill bg-green-100 text-green-700">
                             {questions_count} questions
                           </label>
-                        </>
+                          <label className="pill bg-blue-100 text-blue-700">
+                            {attempts} attempts
+                          </label>
+                        </div>
                       ) : (
                         <>
                           <label className="pill bg-red-100 text-red-700">No questions</label>
