@@ -55,6 +55,10 @@ class Quiz < ApplicationRecord
     (question[:correct_options]).positive? && question[:number_of_options] > 1
   end
 
+  def no_of_valid_questions
+    questions.count { |question| valid_question?(question) }
+  end
+
   def test_questions
     @selected_options = selected_options.uniq
     @shuffled_questions = shuffled_questions

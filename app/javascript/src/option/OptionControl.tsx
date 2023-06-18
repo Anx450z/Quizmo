@@ -24,6 +24,7 @@ const OptionControl = (props: any) => {
       question_id: props.id as string,
     }
     await optionApi.createOption(props.question_id, option)
+    setValue("")
     props.onMutate()
   }
 

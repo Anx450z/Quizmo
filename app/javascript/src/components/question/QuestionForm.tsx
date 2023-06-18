@@ -24,6 +24,7 @@ const QuestionForm = (props: any) => {
       question: value
     }
     await questionApi.createQuestion(id!, question)
+    setValue('')
     props.onMutate()
     window.scrollTo(0, 0)
   }

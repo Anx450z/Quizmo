@@ -1,6 +1,6 @@
 class QuizController < ApplicationController
   before_action :set_quiz, only: %i[show update destroy preview score increment_attempts]
-  before_action :increment_attempts, only: :preview
+  before_action :increment_attempts, only: :score
 
   def index
     @quizzes = current_user.quizzes
