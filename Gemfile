@@ -64,6 +64,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'annotate'
+end
+
+group :test do
+  gem 'rspec-rails'
 end
 
 gem 'pg', '~> 1.5'
@@ -73,3 +78,7 @@ gem 'bcrypt', '~> 3.1'
 gem 'rack-cors', '~> 2.0'
 
 gem 'jwt', '~> 2.7'
+
+gem "factory_bot_rails", "~> 6.2"
+
+gem "faker", "~> 3.2"
