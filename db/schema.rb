@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_17_173140) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_174300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_173140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quiz_id"
+    t.integer "type", default: 0
     t.index ["quiz_id"], name: "index_quiz_settings_on_quiz_id"
   end
 
@@ -62,6 +63,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_173140) do
     t.integer "questions_count"
     t.integer "attempts", default: 0
     t.index ["user_id"], name: "index_quizzes_on_user_id"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string "token_code", null: false
+    t.string "username"
+    t.integer "status", default: 0
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "quiz_id"
+    t.index ["quiz_id"], name: "index_tokens_on_quiz_id"
+    t.index ["token_code"], name: "index_tokens_on_token_code", unique: true
   end
 
   create_table "users", force: :cascade do |t|

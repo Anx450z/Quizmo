@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get '/quiz/:id/preview',  to: 'quiz#preview'
   get 'quiz/:id/score', to: 'quiz#score'
 
-  post '/quiz/:id/generate_tokens', to: 'token#generate_tokens'
+  post '/quiz/:quiz_id/generate_tokens', to: 'token#create'
+  get '/quiz/:quiz_id/show_tokens', to: 'token#show'
+  get '/token/:token_code', to: 'token#show_quiz'
 
   # below routes have to place at the bottom
   root to: 'home#index'

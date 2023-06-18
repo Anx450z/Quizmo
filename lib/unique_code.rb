@@ -26,6 +26,21 @@ class UniqueCode
       window
       hat
       bottle
+      river
+      city
+      place
+      frog
+      lion
+      tiger
+      zebra
+      mouse
+      toy
+      bulb
+      fan
+      tire
+      cloth
+      bat
+      bottle
     ]
 
     @adjectives = %w[
@@ -54,13 +69,14 @@ class UniqueCode
       tall
       short
       friendly
+      cute
     ]
   end
 
   def generate(length = 1)
     @unique_code = ''
     length.times do
-      @unique_code += @adjectives.shuffle[0] + '-' +  @nouns.shuffle[0]
+      @unique_code += "#{@adjectives.sample}-#{@nouns.sample}-#{rand(11..99)}"
     end
     @unique_code
   end

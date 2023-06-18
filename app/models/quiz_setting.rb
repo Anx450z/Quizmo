@@ -11,6 +11,7 @@
 #  negative_mark    :float            default(0.0)
 #  negative_marking :boolean          default(FALSE)
 #  start_time       :datetime
+#  type             :integer          default("open_to_all")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  quiz_id          :bigint
@@ -21,4 +22,5 @@
 #
 class QuizSetting < ApplicationRecord
   belongs_to :quiz, dependent: :destroy
+  enum :type, %i[open_to_all invite_only]
 end

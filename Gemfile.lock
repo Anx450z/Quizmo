@@ -103,7 +103,6 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
-    jwt (2.7.1)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -225,7 +224,6 @@ DEPENDENCIES
   faker (~> 3.2)
   jbuilder
   jsbundling-rails
-  jwt (~> 2.7)
   pg (~> 1.5)
   puma (~> 5.0)
   rack-cors (~> 2.0)

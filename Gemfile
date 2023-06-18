@@ -77,7 +77,6 @@ gem 'bcrypt', '~> 3.1'
 
 gem 'rack-cors', '~> 2.0'
 
-gem 'jwt', '~> 2.7'
 
 gem "factory_bot_rails", "~> 6.2"
 
