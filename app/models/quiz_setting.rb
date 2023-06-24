@@ -10,8 +10,8 @@
 #  end_time         :datetime
 #  negative_mark    :float            default(0.0)
 #  negative_marking :boolean          default(FALSE)
+#  quiz_type        :integer          default(0)
 #  start_time       :datetime
-#  type             :integer          default("open_to_all")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  quiz_id          :bigint

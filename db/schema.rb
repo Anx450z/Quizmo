@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_174300) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quiz_id"
-    t.integer "type", default: 0
+    t.integer "quiz_type", default: 0
     t.index ["quiz_id"], name: "index_quiz_settings_on_quiz_id"
   end
 
