@@ -1,6 +1,7 @@
 class QuizController < ApplicationController
-  before_action :set_quiz, only: %i[show update destroy preview score increment_attempts]
+  before_action :set_quiz, only: %i[show update destroy score increment_attempts]
   before_action :increment_attempts, only: :score
+  before_action :set_preview_quiz, only: :preview
 
   def index
     @quizzes = current_user.quizzes
@@ -44,6 +45,10 @@ class QuizController < ApplicationController
 
   def set_quiz
     @quiz = current_user.quizzes.find(params[:id])
+  end
+
+  def set_preview_quiz
+    @quiz = Quiz.find(params[:id])
   end
 
   def increment_attempts

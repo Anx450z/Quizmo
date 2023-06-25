@@ -1,6 +1,6 @@
 class TokenController < ApplicationController
   require 'unique_code'
-  before_action :set_counter
+  before_action :set_counter, except: :show_quiz
   before_action :set_quiz, except: :show_quiz
 
   def show
