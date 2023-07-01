@@ -43,3 +43,7 @@
 /.idea
 .idea
 .vscode
+
+# Igone environment variable files
+.env
+.env.*

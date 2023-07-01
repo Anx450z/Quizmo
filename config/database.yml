@@ -6,9 +6,12 @@
 #
 default: &default
   adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST' || db] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  port: 8080
-  host: postgres
   timeout: 5000
 
 development:
