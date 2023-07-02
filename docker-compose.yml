@@ -15,6 +15,9 @@ services:
   database:
     image: postgres:15.1
     restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
 
