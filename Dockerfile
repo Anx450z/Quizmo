@@ -11,6 +11,10 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
+# Install yarn
+RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN yarn
+
 COPY . .
 # Expose port 3000 to the Docker host, so we can access it
 # from the outside.
