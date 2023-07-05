@@ -11,9 +11,23 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
+# Install npm
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    npm
+RUN npm install npm@latest -g && \
+    npm install n -g && \
+    n latest
+
 # Install yarn
 RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN yarn
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && apt-get install -y yarn
+RUN cd /app && yarn install
+
+# # updated browserlist for tailwind
+# RUN cd /app yarn add  browserslist@latest --dev
 
 COPY . .
 # Expose port 3000 to the Docker host, so we can access it
