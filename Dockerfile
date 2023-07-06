@@ -29,6 +29,9 @@ RUN cd /app && yarn install
 # # updated browserlist for tailwind
 # RUN cd /app yarn add  browserslist@latest --dev
 
+# Delete pids
+RUN rm -rf /app/tmp/pids/server.pid
+
 COPY . .
 # Expose port 3000 to the Docker host, so we can access it
 # from the outside.
