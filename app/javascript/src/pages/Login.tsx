@@ -28,6 +28,7 @@ const Login = (props:any) => {
       <input placeholder='username' id='username'></input>
       <input type='password' placeholder='*********' id='password'></input>
       <button onClick={handleLogin}>Login</button>
+      <button onClick={() => navigate('signup')}>Sign up</button>
     </div>
   )
 }

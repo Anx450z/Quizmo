@@ -1,39 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import userApi from '../apis/user'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
+  const navigate = useNavigate()
+
+  const [userName, setUsername] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState<string>('')
+
   const handleSignUp = async () => {
     const user = {
       user: {
-        username: (document.getElementById('username') as HTMLInputElement).value as string,
-        email: (document.getElementById('email') as HTMLInputElement).value as string,
-        password: (document.getElementById('password') as HTMLInputElement).value as string,
-        password_confirmation: (
-          document.getElementById('password-confirmation') as HTMLInputElement
-        ).value as string,
+        username: userName,
+        email: email,
+        password: password,
+        password_confirmation: passwordConfirmation,
       },
     }
-
-    await userApi.signup(user)
+    const response = await userApi.signup(user)
+    if (response.statusText == 'OK'){
+      navigate('/')
+    }
   }
 
   return (
-    <form
-      className="grid min-h-screen place-items-center content-center border"
-      onSubmit={handleSignUp}>
-      <h1 className="py-10 text-center text-6xl font-extrabold text-indigo-600 shadow-black drop-shadow-sm">
-        Quizmo
-      </h1>
-      <label>username</label>
-      <input placeholder="username" id="username"></input>
-      <label>email</label>
-      <input placeholder="email" type="email" id="email"></input>
-      <label>password</label>
-      <input type="password" placeholder="*********" id="password"></input>
-      <label>password confirmation</label>
-      <input type="password" placeholder="*********" id="password-confirmation"></input>
-      <button type="submit">Create new account</button>
-    </form>
+    <>
+      <div 
+        className="grid min-h-screen place-items-center content-center border">
+        <h1 className="py-10 text-center text-6xl font-extrabold text-indigo-600 shadow-black drop-shadow-sm">
+          Quizmo
+        </h1>
+        <label>username</label>
+        <input placeholder="username" id="username" onChange={(e)=>setUsername(e.currentTarget.value)} value={userName}></input>
+        <label>email</label>
+        <input placeholder="email" type="email" id="email" onChange={(e)=> setEmail(e.currentTarget.value)} value={email}></input>
+        <label>password</label>
+        <input type="password" placeholder="*********" id="password" onChange={(e)=> setPassword(e.currentTarget.value)} value={password}></input>
+        <label>password confirmation</label>
+        <input type="password" placeholder="*********" id="password-confirmation" onChange={(e)=> setPasswordConfirmation(e.currentTarget.value)} value={passwordConfirmation}></input>
+        <button onClick={handleSignUp}>Create new account</button>
+      <button onClick={() => navigate('/')}>Already have account?</button>
+      </div>
+    </>
   )
 }
 
