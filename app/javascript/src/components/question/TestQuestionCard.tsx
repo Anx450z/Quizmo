@@ -48,10 +48,10 @@ const TestQuestionCard = (props: any) => {
           <label>Question</label>
         </div>
         <div className="flex items-center justify-center align-middle">
-          <label className="pill-button" onClick={handelNextQuestion}>
+          <label className="pill-button" onClick={handelPreviousQuestion}>
             &lt;
           </label>
-          <label className="pill-button" onClick={handelPreviousQuestion}>
+          <label className="pill-button" onClick={handelNextQuestion}>
             &gt;
           </label>
         </div>

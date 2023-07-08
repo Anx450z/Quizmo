@@ -16,7 +16,6 @@ const Quizzes = () => {
 
   const getQuiz = async () => {
     const response = await quizApi.list()
-    console.log(response.data)
     return response.data.quizzes
   }
 

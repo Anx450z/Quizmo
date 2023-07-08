@@ -93,10 +93,10 @@ const PreviewQuiz = () => {
             <section className="col-span-7 mx-4 sm:row-span-6">
               <div className="grid min-h-screen place-items-center content-center">
                 <TestQuestionCard
-                  id={quiz!.questions[quizIndex].question.id}
+                  id={quiz?.questions[quizIndex].question.id}
                   index={quizIndex}
-                  question={quiz!.questions[quizIndex].question.question}
-                  options={quiz!.questions[quizIndex].options}
+                  question={quiz?.questions[quizIndex].question.question}
+                  options={quiz?.questions[quizIndex].options}
                   mutate={mutatePreview}
                   quiz_id={id}
                   setQuizIndex={setQuizIndex}
