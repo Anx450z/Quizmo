@@ -13,12 +13,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'creating a new user' do
+    let(:user) { build(:user) }
     context 'When all fields are set correctly' do
-      before do
-        @user = User.create(username: 'John', email: 'john@example.com', password: 'password', password_confirmation: 'password')
-      end
       it 'should be created successfully' do
-        expect(@user.username).to match('John')
+        expect(user).to be_valid
       end
     end
   end
