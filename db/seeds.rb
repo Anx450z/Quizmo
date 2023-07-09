@@ -2,7 +2,7 @@ require 'factory_bot_rails'
 
 include FactoryBot::Syntax::Methods
 
-# for 3 users create
+# for users create quiz with questions and options
 
 user = User.create(username: 'test', password: 'password', password_confirmation: 'password', email: 'test@example.com')
 5.times do
