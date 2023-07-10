@@ -42,8 +42,8 @@ const Quizzes = () => {
       ) : (
         <>
           <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
-          <div className="grid min-h-screen place-items-center content-center bg-slate-50">
-            <ul className="grid grid-cols-3">
+          <div className="grid place-items-center bg-slate-50">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {quizList?.map(({ id, title, description, questions_count, attempts }: Quiz) => (
                 <li key={id} id={id.toString()} className="quiz-card">
                   <div className="item-start flex justify-between font-semibold">

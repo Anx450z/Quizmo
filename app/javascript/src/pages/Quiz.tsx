@@ -8,6 +8,7 @@ import CreateQuestion from '../components/question/CreateQuestion'
 import QuestionCard from '../components/question/QuestionCard'
 import FilterQuestions from '../components/question/FilterQuestions'
 import QuizSetting from '../components/common/QuizSetting'
+import Navbar from '../components/common/Navbar'
 
 const Quiz = () => {
   const navigate = useNavigate()
@@ -51,6 +52,9 @@ const Quiz = () => {
         <>Loading...</>
       ) : (
         <>
+          <Navbar >
+            <label className='navbar-links' onClick={() => navigate('/')}>All quizzes</label>
+            </Navbar>
           <QuizForm
             data={quiz}
             button={'Update'}
@@ -60,9 +64,9 @@ const Quiz = () => {
             description={description}
             setDescription={setDescription}
           />
-          <QuizSetting quizId={id!}/>
+          <QuizSetting quizId={id!} />
           <button onClick={() => navigate('/')}>All Quizzes</button>
-         
+
           <ul>
             {quiz?.questions.map(({ question, options }: QuestionType, index: number) => (
               <QuestionCard
@@ -78,7 +82,7 @@ const Quiz = () => {
               />
             ))}
           </ul>
-          <div className="container main-question z-[2]">
+          <div className="main-question container z-[2]">
             <CreateQuestion onMutate={handleMutateQuiz} newIndex={quiz?.questions.length! + 1} />
             <FilterQuestions
               allQuestionsCount={quiz?.questions.length}

@@ -81,11 +81,17 @@
  }
 
  .quiz-card {
-  @apply bg-white p-1 m-2 rounded-2xl shadow-md min-w-max
+  @apply bg-white p-1 m-2 rounded-2xl shadow-md w-[400px]
  }
 
  .create-quiz-button{
   @apply bg-indigo-600 rounded-full font-bold fixed bottom-4 right-4 z-[2] text-white py-1.5 px-3 cursor-pointer
  }
-  
+
+ .navbar{
+  @apply sticky top-0 flex items-start justify-between bg-white z-[2]
+ }
+.navbar-links{
+  @apply text-lg font-bold
+}
 }
