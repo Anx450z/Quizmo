@@ -69,6 +69,11 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    appmap (0.99.4)
+      activesupport
+      method_source
+      rack
+      reverse_markdown
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -167,6 +172,8 @@ GEM
     redis (4.8.1)
     reline (0.3.3)
       io-console (~> 0.5)
+    reverse_markdown (2.1.1)
+      nokogiri
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -216,6 +223,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  appmap
   bcrypt (~> 3.1)
   bootsnap
   cssbundling-rails
