@@ -11,18 +11,14 @@
 #  title           :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  user_id         :bigint
-#
-# Indexes
-#
-#  index_quizzes_on_user_id  (user_id)
 #
 class Quiz < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   has_many :questions, dependent: :destroy
   has_many :marked_options, dependent: :destroy
-  belongs_to :user
+  has_many :scores
+  has_many :users, through: :scores
   has_one :quiz_setting
   has_many :tokens
 

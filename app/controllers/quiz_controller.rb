@@ -9,8 +9,9 @@ class QuizController < ApplicationController
   end
 
   def create
-    @quiz = current_user.quizzes.new(quiz_params)
+    @quiz = Quiz.create(quiz_params)
     if @quiz.save
+      Score.create!(quiz: @quiz, user: current_user)
       render json: { message: 'Quiz created' }
     else
       render json: { status: :unprocessable_entity, error: 'Couldn\'t create quiz' }
