@@ -18,5 +18,34 @@
 require 'rails_helper'
 
 RSpec.describe Score, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'when valid score is created' do
+    let!(:score) { build(:score) }
+    it { expect(score).to be_valid }
+  end
+
+  context 'when user is nil score is created' do
+    let!(:score) { build(:score, user: nil) }
+    it { expect(score).not_to be_valid }
+  end
+
+  context 'when quiz is nil score is created' do
+    let!(:score) { build(:score, quiz: nil) }
+    it { expect(score).not_to be_valid }
+  end
+
+  context 'when quiz and user are nil score is created' do
+    let!(:score) { build(:score, quiz: nil, user: nil) }
+    it { expect(score).not_to be_valid }
+  end
+
+  context 'when quiz and user are are created twice' do
+    let!(:quiz) { build(:quiz) }
+    let!(:user) { build(:user) }
+    let!(:score) { create(:score, user:, quiz:) }
+    let!(:score2) { build(:score, user:, quiz:) }
+    it 'should not be created twice' do
+      expect(score).to be_valid
+      expect(score2).not_to be_valid
+    end
+  end
 end

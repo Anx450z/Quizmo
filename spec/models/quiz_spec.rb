@@ -13,17 +13,12 @@
 require 'rails_helper'
 
 RSpec.describe Quiz, type: :model do
-  describe 'for new user' do
-    let(:user) { create(:user) }
-
     context 'when quiz is created for user' do
-      let(:quiz) { build(:quiz, user:) }
+      let(:quiz) { build(:quiz) }
       it { expect(quiz).to be_valid }
     end
-
-    context 'when quiz is created for user' do
-      let(:quiz) { build(:quiz, user: nil) }
+    context 'when title is missing' do
+      let(:quiz) { build(:quiz, title: nil) }
       it { expect(quiz).not_to be_valid }
     end
-  end
 end
