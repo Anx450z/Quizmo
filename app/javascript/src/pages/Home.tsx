@@ -36,19 +36,15 @@ const Home = () => {
         <>
           {current_user?.is_logged_in ? (
             <>
-                <Navbar>
-                  <div>
-                    <label className="mx-2 font-bold">@{current_user.user?.username}</label>
-                    <div onClick={() => navigate('/new_quiz')} className="create-quiz-button">
-                      + New Quiz
-                    </div>
-                    <label
-                      className="cursor-pointer text-sm font-bold text-red-500"
-                      onClick={logout}>
-                      Logout
-                    </label>
-                  </div>
-                </Navbar>
+              <Navbar>
+                <div>
+                  <label className="mx-2 font-bold">@{current_user.user?.username}</label>
+
+                  <label className="cursor-pointer text-sm font-bold text-red-500" onClick={logout}>
+                    Logout
+                  </label>
+                </div>
+              </Navbar>
               <Quizzes />
             </>
           ) : (

@@ -3,6 +3,10 @@ import quizApi from '../apis/quiz'
 import useSwr from 'swr'
 import { useNavigate } from 'react-router-dom'
 import Quill from '../components/common/Quill'
+import GlowButton from '../components/button/GlowButton'
+import GlowButtonSecondary from '../components/button/GlowButtonSecondary'
+import GlowCard from '../components/card/GlowCard'
+import CardGrid from '../components/cardGrid/CardGrid'
 
 const Quizzes = () => {
   type Quiz = {
@@ -41,16 +45,15 @@ const Quizzes = () => {
         <h2>Loading your quizzes...</h2>
       ) : (
         <>
-          <div className="absolute bottom-0 w-full bg-blue-500">In progress</div>
-          <div className="grid place-items-center bg-slate-50">
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid place-items-center bg-white">
+            <CardGrid>
               {quizList?.map(({ id, title, description, questions_count, attempts }: Quiz) => (
-                <li key={id} id={id.toString()} className="quiz-card">
+                <GlowCard key={id} id={id.toString()} className='h-[150px] w-[450px]'>
                   <div className="item-start flex justify-between font-semibold">
                     <div>
                       <Quill value={title} />
                       {questions_count! ? (
-                        <div className='flex items-start justify-between'>
+                        <div className="flex items-start justify-between">
                           <label className="pill bg-green-100 text-green-700">
                             {questions_count} questions
                           </label>
@@ -77,10 +80,15 @@ const Quizzes = () => {
                   <div>
                     <Quill value={description} />
                   </div>
-                </li>
+                </GlowCard>
               ))}
-            </ul>
+            </CardGrid>
           </div>
+          <GlowButtonSecondary
+                className="fixed bottom-4 right-4 text-white"
+                onClick={() => navigate('/new_quiz')}>
+                + New Quiz
+              </GlowButtonSecondary>
         </>
       )}
     </>

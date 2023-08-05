@@ -16,9 +16,9 @@ const GlowButtonSecondary = (props:any) => {
   return(
  <>
   <div className='button bg-blue-500 text-black' onMouseMove={(e)=>updateMouseMovement(e)}>
-   <button className='button-content bg-white'>
-    <span>{props.children}</span>
-    </button>
+   <button className={`button-content ${props.className}`} onClick={props.onClick}>
+    {props.children}
+   </button>
   </div>
  </>
   )

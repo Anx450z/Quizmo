@@ -17,7 +17,7 @@ const Login = (props: any) => {
         password: (document.getElementById('password') as HTMLInputElement).value as string,
       },
     }
-
+    console.log('click login')
     await userApi.login(user)
     props.mutate()
   }
@@ -34,9 +34,9 @@ const Login = (props: any) => {
           <label>Login</label>
           <input placeholder="username" id="username"></input>
           <input type="password" placeholder="*********" id="password"></input>
-          <GlowButtonSecondary onClick={handleLogin}>Login</GlowButtonSecondary>
         </GlowCard>
       </CardGrid>
+          <GlowButtonSecondary onClick={handleLogin}>Login</GlowButtonSecondary>
           <GlowButton onClick={() => navigate('signup')}>Sign up</GlowButton>
     </div>
   )
