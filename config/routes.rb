@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post '/quiz/:quiz_id/generate_tokens', to: 'token#create'
   get '/quiz/:quiz_id/show_tokens', to: 'token#show'
   get '/token/:token_code', to: 'token#show_quiz'
+  post '/token/:token_code', to: 'user#create_token_user'
 
   # *below routes have to place at the bottom
   root to: 'home#index'
